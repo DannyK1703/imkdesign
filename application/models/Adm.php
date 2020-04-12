@@ -88,4 +88,7 @@ class Adm extends CI_Model
         $this->db->insert($this->partenaires, $data);
     }
 
+
+    //Membres Model for Admin
+
 }
