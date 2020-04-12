@@ -5,13 +5,13 @@ class Adm extends CI_Model
 {
     public $admin='Admin';
     public $articles='Articles';
-    public $membre='membres';
+    public $membres='membres';
     public $categorie='categorie';
     public $partenaires='Partenaires';
     public $questions='Questions';
-    public $reponce='Reponce';
-    public $service='Service';
-    public $achat='Achat';
+    public $reponces='Reponce';
+    public $services='Service';
+    public $achats='Achat';
     function authentification($data){
         $this->db->where($data);
         $q=$this->db->get($this->admin);
@@ -91,4 +91,27 @@ class Adm extends CI_Model
 
     //Membres Model for Admin
 
+    function AllMembres(){
+        return $this->db->get($this->partenaires)->result();
+    }
+    function UpdateMembre($id,$mbr){
+        $this->db->set($mbr);
+        $this->db->where($id);
+        $this->db->update($this->membres);
+    }
+    function DeleteMembres($id){
+        $this->db->where($id);
+        $this->db->delete($this->membres);
+    }
+    function AddMembre($data){
+        $this->db->insert($this->membres, $data);
+    }
+    function SingleMembre($id){
+        $this->db->where($id);
+        $q=$this->db->get($this->membres);
+        $res=$q->result();
+        return$res;
+    }
+
+    
 }
