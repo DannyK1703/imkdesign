@@ -29,8 +29,19 @@ class wel extends CI_Model
         return $this->db->get($this->produit)->result();
     }
 
+    //services model for user
+    function AllServices(){
+        return $this->db->get($this->service)->result();
+    }
 
-    
+    //Question model for admin
+    function AddQuestion($data){
+        $this->db->insert($this->questions,$data);
+    }
+    function AllQuestions(){
+        return $this->db->get($this->questions)->result();
+    }
+
     function categories(){
         return $this->db->get($this->categorie)->result();
     }
