@@ -15,9 +15,22 @@ class wel extends CI_Model
     public $taille='taille';
     public $achat='Achat';
 
-    function produits(){
+
+    //Product Model for user
+    function AllProduits(){
         return $this->db->get($this->produit)->result();
     }
+    function SingleProduits($id){
+        $this->db->where($id);
+        return $this->db->get($this->produit)->result();
+    }
+    function ProductCat($cat){
+        $this->db->where($cat);
+        return $this->db->get($this->produit)->result();
+    }
+
+
+    
     function categories(){
         return $this->db->get($this->categorie)->result();
     }
@@ -30,7 +43,7 @@ class wel extends CI_Model
     function AllPartenaires(){
         return $this->db->get($this->partenaires)->result();
     }
-    
+
     
 
 }
