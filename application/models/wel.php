@@ -34,7 +34,7 @@ class wel extends CI_Model
         return $this->db->get($this->service)->result();
     }
 
-    //Question model for admin
+    //Question model for user
     function AddQuestion($data){
         $this->db->insert($this->questions,$data);
     }
@@ -42,6 +42,12 @@ class wel extends CI_Model
         return $this->db->get($this->questions)->result();
     }
 
+    //Responce Model for user
+    function AllReponces(){
+        return $this->db->get($this->reponce)->result();
+    }
+
+    //categorie model for user
     function categories(){
         return $this->db->get($this->categorie)->result();
     }
