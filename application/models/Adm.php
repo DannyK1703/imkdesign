@@ -147,7 +147,7 @@ class Adm extends CI_Model
     function AllCategories(){
         return $this->db->get($this->categories)->result();
     }
-    function UpdateCategore($id,$cat){
+    function UpdateCategorie($id,$cat){
         $this->db->set($cat);
         $this->db->where($id);
         $this->db->update($this->categories);
@@ -157,6 +157,30 @@ class Adm extends CI_Model
         $this->db->delete($this->categories);
     }
 
-    //
+    //Services Model for Admin
 
+    function AddService($data){
+        $this->db->insert($this->services, $data);
+    }
+    function AllServices(){
+        return $this->db->get($this->services)->result();
+    }
+    function UpdateService($id,$serv){
+        $this->db->set($serv);
+        $this->db->where($id);
+        $this->db->update($this->services);
+    }
+    function DeleteService($id){
+        $this->db->where($id);
+        $this->db->delete($this->services);
+    }
+    function SingleService($id){
+        $this->db->where($id);
+        $q=$this->db->get($this->services);
+        $res=$q->result();
+        return$res;
+    }
+
+
+    //
 }
