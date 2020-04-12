@@ -32,7 +32,7 @@
 </head>
 <div class="container align-middle" style="margin-top:10%;">
 <div class="card text-center align-middle" >
-<form>
+<form method="post" action="<?php echo site_url('admin/autentification/');?>">
 <div class="card-header bg-dark">
     <label for="colFormLabelLg " class="col-sm-3 col-form-label col-form-label-lg text-info">Authetification</label>
   </div>
@@ -40,12 +40,13 @@
 
   <div class="form-group" style="margin-top: 50px;margin-bottom:50px;">
     
-    <input type="email" class="form-control form-control-lg" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Login" style="height: 75px;">
-    
+    <input type="text" value="<?php echo set_value('login')?>" name="login" class="form-control form-control-lg" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Login" style="height: 75px;">
+      <?php echo form_error('login','<em>','</em>') ?>
   </div>
   <div class="form-group">
     
-    <input type="password" class="form-control form-control-lg" id="exampleInputPassword3" placeholder="Password" style="height: 75px;">
+    <input type="password" value="<?php echo set_value('pwd')?>" name="pwd" class="form-control form-control-lg" id="exampleInputPassword3" placeholder="Password" style="height: 75px;">
+      <?php echo form_error('pwd','<em>','</em>') ?>
   </div>
   
   </div>

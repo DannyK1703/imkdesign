@@ -14,7 +14,7 @@ class wel extends CI_Model
     public $panier='panier';
     public $taille='taille';
     public $achat='Achat';
-    public $admin='Admin';
+
     public function produits(){
         return $this->db->get($this->produit)->result();
     }

@@ -32,27 +32,40 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-	
+    <header>
+        <nav class="main-navbar">
+            <div class="container">
+                menu
+                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
 
+                    <!-- </ul>
+                </li>-->
+                    <li ><a class="btn btn-bd-download d-none d-lg-inline-block mr-md-3" href="<?=site_url('admin/deconnect');?>">Deconexion</a></li>
+
+                </ul>
+
+            </div>
+        </nav>
+        <div class="card-group">
+            <div class="card col-lg-2  order-lg-1 bg-dark">
+                <h2 class="display-4 text-light">Navigation</h2>
+                <ul class="nav nav-pills flex-column " style="margin-top:50px;">
+
+
+                    <button class="btn btn-outline-light btn-lg " type="button" ><li><a href="<?=site_url('admin/index');?>">Home Page</a></li></button>
+                    <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('Admin/categories');?>">Category</a></li></button>
+                    <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/Achat');?>">Cart Page</a></li></button>
+                    <button class="btn btn-outline-light btn-lg" type="button" >    <li><a href="<?=site_url('admin/msg');?>">Messages</a></li></button>
+                    <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/services');?>">Services</a></li></button>
+                    <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/equipe');?>">Membres</a></li></button>
+                    <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/partenaires');?>">Partenaires</a></li></button>
+                    <!-- </ul>
+                    </li>-->
+                </ul>
+            </div>
+
+    </header>
 	<!-- Header section -->
-	<header class="bg-dark">
-			<div class="container " style="margin-top: 40px;">
-				  
-				<ul class="main-menu">
-							<li><a href="<?=site_url('admin/index');?>">Home Page</a></li>
-							
-							<li><a href="<?=site_url('Admin/categories');?>">Category</a></li>
-							<li><a href="<?=site_url('admin/Achat');?>">Cart Page</a></li>
-                            <li><a href="<?=site_url('admin/msg');?>">Messages</a></li>
-                            <li><a href="<?=site_url('admin/services');?>">Services</a></li>
-                            <li><a href="<?=site_url('admin/equipe');?>">Membres</a></li>
-							<li><a href="<?=site_url('admin/partenaires');?>">Partenaires</a></li>
-						<!-- </ul> 
-					</li>-->
-					<li><a href="<?=site_url('admin/deconnect');?>">Deconexion</a></li>
-				</ul>
-			</div>
-		
-	</header>
 
-</body>
+
+
