@@ -65,7 +65,7 @@ class Adm extends CI_Model
         $this->db->where($state);
         $q=$this->db->get($this->articles);
         $res=$q->result();
-        return$res;
+        return $res;
     }
     function AddArticle($art){
         $this->db->insert($this->articles, $art);
@@ -93,7 +93,7 @@ class Adm extends CI_Model
         $this->db->where($id);
         $q=$this->db->get($this->partenaires);
         $res=$q->result();
-        return$res;
+        return $res;
     }
     function UpdatePartenaire($id,$part){
         $this->db->set($part);
@@ -130,7 +130,7 @@ class Adm extends CI_Model
         $this->db->where($id);
         $q=$this->db->get($this->membres);
         $res=$q->result();
-        return$res;
+        return $res;
     }
 
     //Categorie Model for Admin
@@ -142,7 +142,7 @@ class Adm extends CI_Model
         $this->db->where($id);
         $q=$this->db->get($this->categories);
         $res=$q->result();
-        return$res;
+        return $res;
     }
     function AllCategories(){
         return $this->db->get($this->categories)->result();
@@ -178,9 +178,19 @@ class Adm extends CI_Model
         $this->db->where($id);
         $q=$this->db->get($this->services);
         $res=$q->result();
-        return$res;
+        return $res;
     }
 
 
-    //
+    //Achat Model for Admin
+    
+    function AllAchat(){
+        return $this->db->get($this->achats)->result();
+    }
+    function SingleAchat($id){
+        $this->db->where($id);
+        $q=$this->db->get($this->achats);
+        $res=$q->result();
+        return $res;
+    }
 }
