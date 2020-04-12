@@ -183,7 +183,7 @@ class Adm extends CI_Model
 
 
     //Achat Model for Admin
-    
+
     function AllAchat(){
         return $this->db->get($this->achats)->result();
     }
