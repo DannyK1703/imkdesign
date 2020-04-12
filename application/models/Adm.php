@@ -6,7 +6,7 @@ class Adm extends CI_Model
     public $admin='Admin';
     public $articles='Articles';
     public $membres='membres';
-    public $categorie='categorie';
+    public $categories='categorie';
     public $partenaires='Partenaires';
     public $questions='Questions';
     public $reponces='Reponce';
@@ -18,8 +18,28 @@ class Adm extends CI_Model
         $res=$q->result();
         return $res;
     }
+
+    //Questions model for admin
     function listQuestions(){
         return $this->db->get($this->questions)->result();
+    }
+
+
+    //Reponce Model for Admin
+    function  AllReponces(){
+        return $this->db->get($this->reponces)->result();
+    }
+    function AddReponce($data){
+        $this->db->insert($this->reponces, $data);
+    }
+    function DeleteReponce($id){
+        $this->db->where($id);
+        $this->db->delete($this->reponces);
+    }
+    function UpdateReponce($id,$data){
+        $this->db->set($data);
+        $this->db->where($id);
+        $this->db->update($this->reponces);
     }
 
 
@@ -113,5 +133,30 @@ class Adm extends CI_Model
         return$res;
     }
 
-    
+    //Categorie Model for Admin
+
+    function AddCategorie($data){
+        $this->db->insert($this->categories, $data);
+    }
+    function SingleCategorie($id){
+        $this->db->where($id);
+        $q=$this->db->get($this->categories);
+        $res=$q->result();
+        return$res;
+    }
+    function AllCategories(){
+        return $this->db->get($this->categories)->result();
+    }
+    function UpdateCategore($id,$cat){
+        $this->db->set($cat);
+        $this->db->where($id);
+        $this->db->update($this->categories);
+    }
+    function DeleteCategorie($id){
+        $this->db->where($id);
+        $this->db->delete($this->categories);
+    }
+
+    //
+
 }
