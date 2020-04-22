@@ -14,6 +14,7 @@ class wel extends CI_Model
     public $panier='panier';
     public $taille='taille';
     public $achat='Achat';
+    public $client='client';
 
 
     //Product Model for user
@@ -65,6 +66,17 @@ class wel extends CI_Model
     function AllMembres(){
         return $this->db->get($this->membre)->result();
     }
-    
+    //Connnexion models for users
+
+    function connection($data){
+        $this->db->where($data);
+        $q=$this->db->get($this->client);
+        $res=$q->result();
+        return $res;
+    }
+    function AddClient($data)
+    {
+        $this->db->insert($this->client,$data);
+    }
 
 }
