@@ -22,6 +22,7 @@
 	<link rel="stylesheet" href="<?= base_url('Assets/css/owl.carousel.min.css');?>"/>
 	<link rel="stylesheet" href="<?= base_url('Assets/css/animate.css');?>"/>
 	<link rel="stylesheet" href="<?= base_url('Assets/css/style.css');?>"/>
+    <link rel="stylesheet" href="<?= base_url('Assets/Source/Flaticon/Flaticon/flaticon.css');?>"/>
 
 
 	<!--[if lt IE 9]>
@@ -41,9 +42,14 @@
 					<div class="col-lg-1 text-center text-lg-left">
 						<!-- logo -->
 						<a href="<?=site_url('welcome/index');?>"class="site-logo">
+
 							<img src="<?= base_url('Assets/img/icons/logo.png');?>" alt="" >
+
 						</a>
+
 					</div>
+                    <i class="flaticon-shopping-cart" id="cor"></i>
+
 					<div class="col-xl-6 col-lg-5">
 						<form class="header-search-form">
 							<input type="text" placeholder="Search on divisima ....">
@@ -68,6 +74,30 @@
 				</div>
 			</div>
 		</div>
+        <style>
+            [class^="flaticon-sh"]:before, [class*=" flaticon-sh"]:before, [class^="flaticon-sh"]:after, [class*=" flaticon-sh"]:after {
+                font-family: Flaticon;
+                font-size: 180px;
+                font-style: normal;
+                margin-left: 20px;
+                color: #333;
+            }
+            [id^="cor"]:before,[id*="cor"]:before,[id^="cor"]:after,[id*="cor"]:after{
+                font-family: Flaticon;
+                font-size: 30px;
+                font-style: normal;
+                margin-left: 0px;
+                color: #333;
+            }
+            [class^="flaticon-photo-camera "]:before, [class*="flaticon-photo-camera"]:before, [class^="flaticon-photo-camera"]:after, [class*="flaticon-photo-camera"]:after {
+                font-family: Flaticon;
+                font-size: 180px;
+                font-style: normal;
+                margin-left: 20px;
+                color: #333;
+            }
+
+        </style>
 		<nav class="main-navbar">
 			<div class="container">
 				 menu 

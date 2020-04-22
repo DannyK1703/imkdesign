@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class wel extends CI_Model
 {
     public $produit='Articles';
-    public $membre='membres';
+    public $membre='membre';
     public $categorie='categorie';
     public $partenaires='Partenaires';
     public $questions='Questions';
@@ -61,6 +61,9 @@ class wel extends CI_Model
         return $this->db->get($this->partenaires)->result();
     }
 
-    
+    //membres Models for User
+    function AllMembres(){
+        return $this->db->get($this->membre)->result();
+    }
 
 }

@@ -4,24 +4,32 @@
 	<!-- Hero section -->
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
-			<div class="hs-item set-bg" data-setbg="<?=base_url('Assets/img/b7.jpg');?>">
+            <?php
+            foreach ($produits as $prod){
+                if($prod->etat!='off'){
+                    echo'<div class="hs-item set-bg" data-setbg="'.base_url('Assets/img/b9.jpg').'">
 				<div class="container">
 					<div class="row">
 						<div class="col-xl-6 col-lg-7 text-white">
-							<span>New Arrivals</span>
-							<h2>denim jackets</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum sus-pendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
+							<span>'.$prod->etat.'</span><h2>'.$prod->NomArticle.'</h2><p>'.$prod->DescArticle.'</p> 
 							<a href="#" class="site-btn sb-line">DISCOVER</a>
-							<a href="#" class="site-btn sb-white">ADD TO CART</a>
-						</div>
+							</div>
 					</div>
 					<div class="offer-card text-white">
 						<span>from</span>
-						<h2>$29</h2>
+						<h2>'.$prod->PrixArticle.'</h2>
 						<p>SHOP NOW</p>
 					</div>
 				</div>
-			</div>
+			</div>';
+                }
+
+            }
+            ?>
+
+
+
+
             <div class="hs-item set-bg" data-setbg="<?=base_url('Assets/img/b4.jpg');?>">
                 <div class="container">
                     <div class="row">
@@ -135,20 +143,47 @@
 		</div>
 	</section>
 	<!-- Features section end -->
-	<div class="container">
+    <div class="section-title">
+        <h2>SERVICES</h2>
+    </div
+	<div class="container" style="">
+
 		<div class="row mb100">
+
+
 			<div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
 				<div class="icon-box-1 match-height mb30">
 					<p>______________________________________</p>
-					<i class="fa-4x pe-7s-camera"></i>
+					<i class="flaticon-shutter" ></i>
 					<div class="content-area">
 						<h3 class="title">Web Design</h3>
 						<div class="content">Goodbye gray sky hello blue. There's nothing can hold me when I hold you. Feels so right it cant be wrong.</div>
 					</div>
 				</div>
 			</div>
+            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
+                <div class="icon-box-1 match-height mb30">
+                    <p>______________________________________</p>
+                    <i class="flaticon-photo-camera" ></i>
+                    <div class="content-area">
+                        <h3 class="title">Web Design</h3>
+                        <div class="content">Goodbye gray sky hello blue. There's nothing can hold me when I hold you. Feels so right it cant be wrong.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
+                <div class="icon-box-1 match-height mb30">
+                    <p>______________________________________</p>
+                    <i class="flaticon-shopping-cart" ></i>
+                    <div class="content-area">
+                        <h3 class="title">Web Design</h3>
+                        <div class="content">Goodbye gray sky hello blue. There's nothing can hold me when I hold you. Feels so right it cant be wrong.</div>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
+
 	<!-- letest product section -->
 	<section class="top-letest-product-section">
 		<div class="container">

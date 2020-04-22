@@ -33,10 +33,13 @@
 						</div>
 					</div>
 				</div>
+                <?php
+
+                echo'
 				<div class="col-lg-6 product-details">
-					<h2 class="p-title">White peplum top</h2>
-					<h3 class="p-price">$39.90</h3>
-					<h4 class="p-stock">Available: <span>In Stock</span></h4>
+					<h2 class="p-title">'.$NomArticle.'</h2>
+					<h3 class="p-price">'.$PrixArticle.'</h3>
+					<h4 class="p-stock">Available: <span>'.$etat.'</span></h4>
 					<div class="p-rating">
 						<i class="fa fa-star-o"></i>
 						<i class="fa fa-star-o"></i>
@@ -76,7 +79,7 @@
 					</div>
 					<div class="quantity">
 						<p>Quantity</p>
-                        <div class="pro-qty"><input type="text" value="1"></div>
+                        <div class="pro-qty"><input type="text" name="qte" value="1"></div>
                     </div>
 					<a href="#" class="site-btn">SHOP NOW</a>
 					<div id="accordion" class="accordion-area">
@@ -89,7 +92,7 @@
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
 									<p>Approx length 66cm/26" (Based on a UK size 8 sample)</p>
 									<p>Mixed fibres</p>
-									<p>The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8"</p>
+									<p>The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5.8"</p>
 								</div>
 							</div>
 						</div>
@@ -99,7 +102,7 @@
 							</div>
 							<div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
 								<div class="panel-body">
-									<img src="<?= base_url('Assets/img/cards.png');?>" alt="">
+									<img src="'. base_url('Assets/img/cards.png').'" alt="">
 									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis auctor gravida. Integer bibendum sodales arcu id te mpus. Ut consectetur lacus leo, non scelerisque nulla euismod nec.</p>
 								</div>
 							</div>
@@ -127,10 +130,9 @@
 				</div>
 			</div>
 		</div>
-	</section>
-	<!-- product section end -->
+	</section>';
 
-
+?>
 	<!-- RELATED PRODUCTS section -->
 	<section class="related-product-section">
 		<div class="container">

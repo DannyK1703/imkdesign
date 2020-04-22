@@ -48,70 +48,32 @@
 	<section class="related-product-section spad">
 		<div class="container">
 			<div class="section-title">
-				<h2>Your Favorites</h2>
+				<h2>Your Team</h2>
 			</div>
+
 			<div class="row">
-				<div class="col-lg-3 col-sm-6">
+                <?php
+                foreach ($membre as $mbr){
+                    echo '<div class="col-lg-3 col-sm-6">
 					<div class="product-item">
 						<div class="pi-pic">
 							<div class="tag-new">New</div>
-							<img src="<?=base_url('Assets/img/product/2.jpg');?>" alt="">
+							<img src="'.base_url('Assets/img/product/2.jpg').'" alt="">
 							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+								<a href="#" class="add-card"><i class="fa fa-facebook"></i><span>Facebook</span></a>
+								<a href="#" class="add-card"><i class="fa fa-envelope"></i><span>Email</span></a>
 							</div>
 						</div>
 						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Black and White Stripes Dress</p>
+							<h5>'.$mbr->NomMembre.'</h5>
+							<p>'.$mbr->DescMembre.'</p>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="<?=base_url('Assets/img/product/5.jpg');?>" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="<?=base_url('Assets/img/product/9.jpg');?>" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="<?=base_url('Assets/img/product/1.jpg');?>" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
+				</div>';
+                }
+                ?>
+
+
 			</div>
 		</div>
 	</section>

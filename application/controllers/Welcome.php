@@ -20,19 +20,21 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('index'); 
+        $this->load->model('wel');
+        $prods['produits']=$this->wel->AllProduits();
+		$this->load->view('index',$prods);
 	}
 	public function produits()
     {
         $this->load->model('wel');
-        $prods['produits']=$this->wel->produits();
+        $prods['produits']=$this->wel->AllProduits();
         $this->load->view('product',$prods);
     }
     public  function  categories()
     {
         $this->load->model('wel');
         $categ['categ']=$this->wel->categories();
-        $categ['produits']=$this->wel->produits();
+        $categ['produits']=$this->wel->AllProduits();
         $this->load->view('category',$categ);
     }
     public function factures($panier){
@@ -41,12 +43,30 @@ class Welcome extends CI_Controller {
         $this->laod->view('checkout',$prods);
     }
     public function contacts(){
-	    $this->load->view('contact');
+        $this->load->model('wel');
+        $team['membre']=$this->wel->AllMembres();
+	    $this->load->view('contact',$team);
     }
     public function connexion(){
 	    $this->load->view('connexion');
     }
     public function inscription(){
 	    $this->load->view('inscription');
+    }
+    public function CatProd($id){
+        $this->load->model('wel');
+        $data=array('categorie_idcategorie'=>$id);
+        $categ['categ']=$this->wel->categories();
+        $categ['produits']=$this->wel->ProductCat($data);
+        $this->load->view('category',$categ);
+    }
+    public function SingleArt($id){
+	    $data=array('idArticles'=>$id);
+        $this->load->model('wel');
+        $prod=$this->wel->SingleProduits($data);
+        if (count($prod) == 1) {
+            $prods= $prod[0];
+            $this->load->view('product',$prods);
+        }
     }
 }
