@@ -31,7 +31,7 @@
 
 </head>
 <body>
-<body>
+
 <!-- Page Preloder -->
 
 
@@ -53,25 +53,27 @@
     <section class="contact-info" style="margin-left: 15%;margin-right: 15%;">
         <button class="btn btn-link btn-lg btn-block"><img src="<?= base_url('Assets/img/icons/l3.png');?>" style="max-width: 200px"/></button>
         <div class="" style="font-size: 40px">
-                                                <form class="contact-form" mathod="post" action="">
-                                                    <input type="text" name="nom" placeholder="Your name">
-                                                    <input type="text" name="login" placeholder="Your Login">
-                                                    <input type="email" name="email" placeholder="Your Email">
-                                                    <input type="text" name="phone" placeholder="Your Phone Number">
-                                                    <input type="password" name="pwd" placeholder="Password">
-                                                    <input type="password" name="cpwd" placeholder="Confirm Password">
-                                                    <button type="submit" class="site-btn submit-order-btn">S'inscrire</button>
-                                                </form>
-                                                <div class="up-item">
-                                                    <button class="btn btn-link btn-lg btn-block"><i class="flaticon-profile"></i>
-                                                        <a href="<?=site_url('welcome/connexion');?>">Se Connecter</a></button>
-                                                </div>
-
-                                            </div>
-
-
-
-                                </section>
+            <form class="contact-form" mathod="post" action="<?=  site_url('welcome/inscript');?>">
+                <input type="text" name="nom" value="<?php echo set_value('nom')?>" placeholder="Your name">
+                <?php echo form_error('nom','<em>','</em>') ?>
+                <input type="text" name="login" value="<?php echo set_value('login')?>" placeholder="Your Login">
+                <?php echo form_error('login','<em>','</em>') ?>
+                <input type="email" name="email" value="<?php echo set_value('email')?>" placeholder="Your Email">
+                <?php echo form_error('email','<em>','</em>') ?>
+                <input type="text" name="phone" value="<?php echo set_value('phone')?>" placeholder="Your Phone Number">
+                <?php echo form_error('phone','<em>','</em>') ?>
+                <input type="password" name="pwd" value="<?php echo set_value('pwd')?>" placeholder="Password">
+                <?php echo form_error('pwd','<em>','</em>') ?>
+                <input type="password" name="cpwd" value="<?php echo set_value('cpwd')?>" placeholder="Confirm Password">
+                <?php echo form_error('cpwd','<em>','</em>') ?>
+                <button type="submit" class="site-btn submit-order-btn">S'inscrire</button>
+            </form>
+            <div class="up-item">
+                <button class="btn btn-link btn-lg btn-block"><i class="flaticon-profile"></i>
+                    <a href="<?=site_url('welcome/connexion');?>">Se Connecter</a></button>
+            </div>
+        </div>
+    </section>
                                 
       
         

@@ -24,6 +24,109 @@ class Welcome extends CI_Controller {
         $prods['produits']=$this->wel->AllProduits();
 		$this->load->view('index',$prods);
 	}
+	public function connection(){
+        $this->form_validation->set_rules('login','login', 'required|min_length[4]',
+            array('required' => 'Ce champs est obligatoire',
+                'min_length' => '4 caractères minimum'));
+        $this->form_validation->set_rules('pwd','pwd', 'required|min_length[4]',
+            array('required' => 'Ce champs est obligatoire',
+                'min_length' => '4 caractères minimum'));
+        if($this->form_validation->run()) {
+            $name = $this->input->post('login');
+            $pwd = $this->input->post('pwd');
+            $Auth = array(
+                'loginClient' => $name,
+                'pwdClient' => $pwd
+            );
+            $this->load->model('Adm');
+            $res = $this->Adm->connection($Auth);
+            if (count($res) > 0) {
+                $user = $res[0];
+                $ret = array('login' => $user->Login, 'mdp' => $user->Mdp, 'is_connected' => true);
+            }
+            if ($pwd == $ret['mdp']) {
+                $this->session->set_userdata($ret);
+                $this->load->model('Adm');
+                $prods['produits']=$this->wel->AllProduits();
+                $this->load->view('index', $prods);
+            } else {
+                $ret = array(
+                    'error_login' => 'login ou mot de passe incorrect'
+                );
+                $this->session->set_flashdata($ret);
+            }
+        }else{
+            $this->load->view('connexion');
+        }
+    }
+    public function connect($name,$pwd){
+        $Auth = array(
+            'loginClient' => $name,
+            'pwdClient' => $pwd
+        );
+        $this->load->model('Adm');
+        $res = $this->Adm->connection($Auth);
+        if (count($res) > 0) {
+            $user = $res[0];
+            $ret = array('login' => $user->Login, 'mdp' => $user->Mdp, 'is_connected' => true);
+        }
+        if ($pwd == $ret['mdp']) {
+            $this->session->set_userdata($ret);
+            $this->load->model('Adm');
+            $prods['produits']=$this->wel->AllProduits();
+            $this->load->view('index', $prods);
+        } else {
+            $ret = array(
+                'error_login' => 'login ou mot de passe incorrect'
+            );
+            $this->session->set_flashdata($ret);
+        }
+
+    }
+    public function inscript(){
+        $this->form_validation->set_rules('nom','nom', 'required|min_length[4]',
+            array('required' => 'Ce champs est obligatoire',
+                'min_length' => '4 caractères minimum'));
+        $this->form_validation->set_rules('login','login', 'required|min_length[4]',
+            array('required' => 'Ce champs est obligatoire',
+                'min_length' => '4 caractères minimum'));
+        $this->form_validation->set_rules('email','email', 'required|min_length[4]',
+            array('required' => 'Ce champs est obligatoire',
+                'min_length' => '4 caractères minimum'));
+        $this->form_validation->set_rules('phone','phone', 'required|min_length[4]',
+            array('required' => 'Ce champs est obligatoire',
+                'min_length' => '4 caractères minimum'));
+        $this->form_validation->set_rules('cpwd','cpwd', 'required|min_length[4]',
+            array('required' => 'Ce champs est obligatoire',
+                'min_length' => '4 caractères minimum'));
+
+        $this->form_validation->set_rules('pwd','pwd', 'required|min_length[4]',
+            array('required' => 'Ce champs est obligatoire',
+                'min_length' => '4 caractères minimum'));
+        if($this->form_validation->run()) {
+            $nom=$this->input->post('nom');
+            $login=$this->inpuut->post('login');
+            $phone=$this->input->post('phone');
+            $email=$this->input->post('email');
+            $pwd=$this->input->post('pwd');
+            $cpwd=$this->input->post('cpwd');
+            if($pwd == $cpwd){
+                $data= array('NomClient'=>$nom,
+                             'EmailClient'=>$email,
+                             'PhoneClient'=>$phone,
+                             'loginClient'=>$login,
+                             'pwdClient'=>$pwd);
+                $this->load->model('wel');
+                $this->wel->AddClient($data);
+                $this->connect($login,$cpwd);
+            }else{
+                $a['msg']='mos de passes non conformes';
+                $this->load->view('inscription',$a);
+            }
+        }else{
+            $this->load->view('inscription');
+        }
+    }
 	public function about(){
 	    $this->load->model('wel');
 	    $team['membres']=$this->wel->AllMembres();

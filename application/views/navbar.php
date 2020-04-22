@@ -103,7 +103,7 @@
 				 menu 
 				<ul class="main-menu">
 							<li><a href="<?=site_url('welcome/index');?>">Home Page</a></li>
-							<li><a href="<?=site_url('welcome/produits');?>">Product Page</a></li>
+
 							<li><a href="<?=site_url('welcome/categories');?>">Category Page</a></li>
 							<li><a href="<?=site_url('welcome/paniets');?>">Cart Page</a></li>
 							<li><a href="<?=site_url('welcome/factures');?>">Checkout Page</a></li>

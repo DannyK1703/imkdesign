@@ -33,23 +33,11 @@
 <body>
 	<!-- Page Preloder -->
     <header>
-        <nav class="main-navbar">
-            <div class="container">
-                menu
-                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-
-                    <!-- </ul>
-                </li>-->
-                    <li ><a class="btn btn-bd-download d-none d-lg-inline-block mr-md-3" href="<?=site_url('admin/deconnect');?>">Deconexion</a></li>
-
-                </ul>
-
-            </div>
-        </nav>
-        <div class="card-group">
-            <div class="card col-lg-2  order-lg-1 bg-dark">
-                <h2 class="display-4 text-light">Navigation</h2>
-                <ul class="nav nav-pills flex-column " style="margin-top:50px;">
+        <div class="pos-f-t">
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-dark p-4">
+                <h4 style="color: #2cc36b;text-align: center"><?= $this->session->login?></h4>
+                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex" style="margin-top:50px;">
 
 
                     <button class="btn btn-outline-light btn-lg " type="button" ><li><a href="<?=site_url('admin/index');?>">Home Page</a></li></button>
@@ -59,11 +47,20 @@
                     <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/services');?>">Services</a></li></button>
                     <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/equipe');?>">Membres</a></li></button>
                     <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/partenaires');?>">Partenaires</a></li></button>
+                    <li ><a class="btn btn-bd-download d-none d-lg-inline-block mr-md-3" href="<?=site_url('admin/deconnect');?>">Deconexion</a></li>
                     <!-- </ul>
                     </li>-->
                 </ul>
             </div>
 
+            </div>
+
+        <nav class="navbar navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
+        </div>
     </header>
 	<!-- Header section -->
 

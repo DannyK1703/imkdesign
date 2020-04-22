@@ -51,9 +51,11 @@
             <section class="contact-info" style="margin-left: 15%;margin-right: 15%;">
                 <button class="btn btn-link btn-lg btn-block"><img src="<?= base_url('Assets/img/icons/l3.png');?>" style="max-width: 200px"/></button>
                 <div class="" style="font-size: 40px">
-                    <form class="contact-form" mathod="post" action="">
-                        <input type="text" name="login" placeholder="Your Login"style="height: 80px;font-size: 20px">
-                        <input type="password" name="pwd" placeholder="Password"style="height: 80px;font-size: 20px">
+                    <form class="contact-form" mathod="post" action="<?php echo site_url('welcome/connection');?>">
+                        <input type="text" name="login" value="<?php echo set_value('login')?>" placeholder="Your Login"style="height: 80px;font-size: 20px">
+                        <?php echo form_error('login','<em>','</em>') ?>
+                        <input type="password" name="pwd" value="<?php echo set_value('pwd')?>" placeholder="Password"style="height: 80px;font-size: 20px">
+                        <?php echo form_error('pwd','<em>','</em>') ?>
                         <button class="site-btn submit-order-btn">Connexion</button>
                         <button class="btn btn-link btn-lg btn-block"><i class="flaticon-profile"></i><a href="<?=site_url('welcome/inscription');?>">S'Inscrire</a></button>
                     </form>
