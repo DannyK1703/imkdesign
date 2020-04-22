@@ -33,50 +33,26 @@
 <body>
 <body>
 <!-- Page Preloder -->
-<div id="preloder">
-    <div class="loader"></div>
-</div>
+
 
 <!-- Header section -->
-<header class="header-section">
-    <div class="header-top">
+<div class="container justify-content-right">
+    <!-- Header section -->
+    <div class="page-top-info">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-2 text-center text-lg-left">
-                    <!-- logo -->
-                    <a href="<?=site_url('welcome/index');?>"class="site-logo">
-                        <img src="<?= base_url('Assets/img/icons/logo.png');?>" alt="" style="height: 80px">
-                    </a>
-                </div>
-                <div class="col-xl-6 col-lg-5">
-                    <form class="header-search-form">
-                        <input type="text" placeholder="Search on divisima ....">
-                        <button><i class="flaticon-search"></i></button>
-                    </form>
-                </div>
-                <div class="col-xl-4 col-lg-5">
-                    <div class="user-panel">
-                        <div class="up-item">
-                            <i class="flaticon-profile"></i>
-                            <a href="<?=site_url('welcome/connexion');?>">Sign</a> In or <a href="<?=site_url('welcome/inscription');?>">Create Account</a>
-                        </div>
-                        <div class="up-item">
-                            <div class="shopping-card">
-                                <i class="flaticon-bag"></i>
-                                <span>0</span>
-                            </div>
-                            <a href="#">Shopping Cart</a>
-                        </div>
-                    </div>
-                </div>
+            <h4>Inscription</h4>
+            <div class="site-pagination">
+                <button class="btn btn-light "><a href="<?=  site_url('welcome/index');?>">RETOUR A L'ACCUEIL</a></button> /
+                <a href="">INSCRIPTION</a>
             </div>
         </div>
     </div>
-<section class="contact-section">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-lg-6 contact-info">
-                                                <h3>Inscription</h3>
+
+
+
+    <section class="contact-info" style="margin-left: 15%;margin-right: 15%;">
+        <button class="btn btn-link btn-lg btn-block"><img src="<?= base_url('Assets/img/icons/l3.png');?>" style="max-width: 200px"/></button>
+        <div class="" style="font-size: 40px">
                                                 <form class="contact-form" mathod="post" action="">
                                                     <input type="text" name="nom" placeholder="Your name">
                                                     <input type="text" name="login" placeholder="Your Login">
@@ -84,11 +60,17 @@
                                                     <input type="text" name="phone" placeholder="Your Phone Number">
                                                     <input type="password" name="pwd" placeholder="Password">
                                                     <input type="password" name="cpwd" placeholder="Confirm Password">
-                                                    <button class="site-btn submit-order-btn">Valider</button>
+                                                    <button type="submit" class="site-btn submit-order-btn">S'inscrire</button>
                                                 </form>
+                                                <div class="up-item">
+                                                    <button class="btn btn-link btn-lg btn-block"><i class="flaticon-profile"></i>
+                                                        <a href="<?=site_url('welcome/connexion');?>">Se Connecter</a></button>
+                                                </div>
+
                                             </div>
-                                        </div>
-                                    </div>
+
+
+
                                 </section>
                                 
       

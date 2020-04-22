@@ -36,41 +36,28 @@
 
 <div class="container justify-content-right">
                 <!-- Header section -->
-                <header class="header-section ">
-                    <div class="header-top">
-                        <div class="container justify-content-right">
-                            <div class="row ">
-                                <div class="col-lg-3 text-right text-lg-right">
-                                    <!-- logo -->
-                                    <a href="<?=site_url('welcome/index');?>"class="cn-logo">
-                                        <img src="<?= base_url('Assets/img/icons/l1.png');?>" alt="" >
-                                    </a>
-                                    <h3>Connexion</h3>
-                                </div>
+    <div class="page-top-info">
+        <div class="container">
+            <h4>Connexion</h4>
+            <div class="site-pagination">
+                <button class="btn btn-light "><a href="<?=  site_url('welcome/index');?>">RETOUR A L'ACCUEIL</a></button> /
+                <a href="">CONNEXION</a>
+            </div>
+        </div>
+    </div>
 
 
-                            </div>
-                        </div>
-                    </div>
-                    </header>
-                    <div class="modal-body">
-                        <section class="contact-section">
-                                <div class="container justify-content-right">
-                                    <div class="row">
-                                        <div class="col-lg-6 contact-info">
 
-                                            
-                                            <form class="contact-form" mathod="post" action="">
-                                                <input type="text" name="login" placeholder="Your Login">
-                                                <input type="password" name="pwd" placeholder="Password">
-                                                <button class="site-btn">Connexion</button>
-                                                <button class="site-btn">S'inscrire</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                       
-                    </div>
-</div>
+            <section class="contact-info" style="margin-left: 15%;margin-right: 15%;">
+                <button class="btn btn-link btn-lg btn-block"><img src="<?= base_url('Assets/img/icons/l3.png');?>" style="max-width: 200px"/></button>
+                <div class="" style="font-size: 40px">
+                    <form class="contact-form" mathod="post" action="">
+                        <input type="text" name="login" placeholder="Your Login"style="height: 80px;font-size: 20px">
+                        <input type="password" name="pwd" placeholder="Password"style="height: 80px;font-size: 20px">
+                        <button class="site-btn submit-order-btn">Connexion</button>
+                        <button class="btn btn-link btn-lg btn-block"><i class="flaticon-profile"></i><a href="<?=site_url('welcome/inscription');?>">S'Inscrire</a></button>
+                    </form>
+                </div>
+            </section>
+
 </body>

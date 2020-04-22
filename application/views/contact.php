@@ -45,38 +45,7 @@
 
 
 	<!-- Related product section -->
-	<section class="related-product-section spad">
-		<div class="container">
-			<div class="section-title">
-				<h2>Your Team</h2>
-			</div>
 
-			<div class="row">
-                <?php
-                foreach ($membre as $mbr){
-                    echo '<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<div class="tag-new">New</div>
-							<img src="'.base_url('Assets/img/product/2.jpg').'" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="fa fa-facebook"></i><span>Facebook</span></a>
-								<a href="#" class="add-card"><i class="fa fa-envelope"></i><span>Email</span></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h5>'.$mbr->NomMembre.'</h5>
-							<p>'.$mbr->DescMembre.'</p>
-						</div>
-					</div>
-				</div>';
-                }
-                ?>
-
-
-			</div>
-		</div>
-	</section>
 	<!-- Related product section end -->
 
 <?php include_once('footer.php');?>

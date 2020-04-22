@@ -24,6 +24,11 @@ class Welcome extends CI_Controller {
         $prods['produits']=$this->wel->AllProduits();
 		$this->load->view('index',$prods);
 	}
+	public function about(){
+	    $this->load->model('wel');
+	    $team['membres']=$this->wel->AllMembres();
+	    $this->load->view('about',$team);
+    }
 	public function produits()
     {
         $this->load->model('wel');

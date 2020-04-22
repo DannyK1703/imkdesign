@@ -65,5 +65,6 @@ class wel extends CI_Model
     function AllMembres(){
         return $this->db->get($this->membre)->result();
     }
+    
 
 }

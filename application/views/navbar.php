@@ -108,6 +108,7 @@
 							<li><a href="<?=site_url('welcome/paniets');?>">Cart Page</a></li>
 							<li><a href="<?=site_url('welcome/factures');?>">Checkout Page</a></li>
 							<li><a href="<?=site_url('welcome/contacts');?>">Contact Page</a></li>
+                            <li><a href="<?=site_url('welcome/about');?>">About</a></li>
 						<!-- </ul> 
 					</li>-->
 					<li><a href="#">Blog</a></li>
