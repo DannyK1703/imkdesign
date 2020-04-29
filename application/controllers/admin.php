@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin extends CI_Controller {
     //Admin Access to firt page
+
     public function index(){
         $this->load->view('Admin/index');
     }
@@ -28,12 +29,12 @@ class admin extends CI_Controller {
                 $user = $res[0];
                 $ret = array('login' => $user->Login, 'mdp' => $user->Mdp, 'is_connected' => true);
 
-                if ($pwd == $ret['mdp']) {
+                if ($this->session->is_connected) {
                     $this->session->set_userdata($ret);
                     $this->load->model('Adm');
-                    $liste['questions'] = $this->Adm->listQuestions();
-                    $this->load->view('Admin/navbar');
-                    $this->load->view('Admin/accueil', $liste);
+                    $liste['categ'] = $this->Adm->AllCategories();
+                    $this->load->view('Admin/navAdmin');
+                    $this->load->view('Admin/categories', $liste);
                 }
 
             }else{
@@ -55,7 +56,7 @@ class admin extends CI_Controller {
     public function accueil(){
         $this->load->model('Adm');
         $liste['questions'] = $this->Adm->listQuestions();
-        $this->load->view('Admin/navbar');
+        $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/accueil', $liste);
     }
 
@@ -67,7 +68,7 @@ class admin extends CI_Controller {
         $id=array('categorie_idcategorie'=>$idcat);
         $this->load->model('Adm');
         $list['prods']=$this->Adm->ArticleCat($id);
-        $this->load->view('Admin/navbar');
+        $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/prodcat',$list);
     }
     public function newArticle(){
@@ -126,11 +127,12 @@ class admin extends CI_Controller {
     public function categories(){
         $this->load->model('Adm');
         $categ['categ']=$this->Adm->AllCategories();
-        $this->load->view('Admin/navbar');
+        $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/categories',$categ);
+
     }
     public function newCategorie(){
-        $this->load->view('newCat');
+        $this->load->view('Admin/newCat');
     }
 
     public function modifCat($id){
@@ -169,6 +171,7 @@ class admin extends CI_Controller {
     public function Membres(){
         $this->load->model('Adm');
         $liste['mbres']=$this->Adm->AllMembres();
+        $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/membres',$liste);
     }
     public function newMembre(){
@@ -218,6 +221,7 @@ class admin extends CI_Controller {
     public function Partenaires(){
         $this->load->model('Adm');
         $list['part']=$this->Adm->AllPartenaire();
+        $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/partenaires',$list);
     }
     public function newPartenaire(){
@@ -265,6 +269,7 @@ class admin extends CI_Controller {
     public function service(){
         $this->load->model('Adm');
         $list['serv']=$this->Adm->AllServices();
+        $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/services',$list);
     }
 
@@ -307,6 +312,7 @@ class admin extends CI_Controller {
     public function Admins(){
         $this->load->model('Adm');
         $liste['adm']=$this->Adm->AllAdmin();
+        $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/admins',$liste);
     }
 
@@ -349,6 +355,7 @@ class admin extends CI_Controller {
     public function msg(){
         $this->load->model('Adm');
         $liste['qst']=$this->Adm->listQuestions();
+        $this->load->view('navAdmin');
         $this->load->view('question',liste);
     }
 
@@ -356,7 +363,8 @@ class admin extends CI_Controller {
     public function Reponce(){
         $this->load->model('Adm');
         $liste['rpc']=$this->Adm->AllReponces();
-        $this->load->view('reponces',liste);
+        $this->load->view('Admin/navAdmin');
+        $this->load->view('Admin/reponces',liste);
     }
 
     public function newReponce(){

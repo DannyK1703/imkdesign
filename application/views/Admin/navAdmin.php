@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="fr">
 <head>
 	<title>Divisima | eCommerce Template</title>
 	<meta charset="UTF-8">
@@ -34,9 +34,7 @@
 	<!-- Page Preloder -->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -68,19 +66,20 @@
                 </li>
 
             </ul>
+            <?php echo $this->session->login?>
             <form class="form-inline my-2 my-lg-0">
 
 
-                <?= $this->session->login;?>
+
 
 
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >
-                    <a href="<?=site_url('admin/deconnecter');?>"><?=$a?></a></button>
+                    <a href="<?=site_url('admin/deconnecter');?>"></a></button>
             </form>
         </div>
     </nav>
 
-
+</body>
 	<!-- Header section -->
 
 

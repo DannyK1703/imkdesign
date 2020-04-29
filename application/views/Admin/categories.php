@@ -9,15 +9,16 @@
     </thead>
     <tbody>
     <?php
-        $i=0;
+        $i=1;
         foreach ($categ as $cat){
             echo '<tr></tr><th scope="row">'.$i.'</th>
-            <td>'.$categ->nomCategorie.'</td>
+            <td>'.$cat->nomCategorie.'</td>
             <td><a href="">modif</a><a href="">supp</a></tr>';
             $i++;
         }
+
     ?>
 
     </tbody>
 </table>
-<button class="btn-outline-light"><a href="<?= site_url('admins/newCategorie');?>">Nouvelle Categorie</a></button>
+<a class="btn btn-outline-secondary btn-lg btn-block" href="<?= site_url('admin/newCategorie');?>">Nouvelle Categorie</a>

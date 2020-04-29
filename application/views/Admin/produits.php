@@ -1,5 +1,5 @@
 <?php
-    include ('navbar.php');
+    include('navAdmin.php');
     ?>
 <div class="container" style="margin-top: -450px;">
     <div class="card">
