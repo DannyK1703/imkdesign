@@ -70,6 +70,9 @@ class admin extends CI_Controller {
         $this->load->view('Admin/navbar');
         $this->load->view('Admin/prodcat',$list);
     }
+    public function newArticle(){
+        $this->load->view('newArt');
+    }
     public function AddArticle($idcat){
         $nom=$this->input->post('nom');
         $description=$this->input->post('desc');
@@ -126,6 +129,9 @@ class admin extends CI_Controller {
         $this->load->view('Admin/navbar');
         $this->load->view('Admin/categories',$categ);
     }
+    public function newCategorie(){
+        $this->load->view('newCat');
+    }
 
     public function modifCat($id){
         $nom=$this->input->post('titre');
@@ -164,6 +170,9 @@ class admin extends CI_Controller {
         $this->load->model('Adm');
         $liste['mbres']=$this->Adm->AllMembres();
         $this->load->view('Admin/membres',$liste);
+    }
+    public function newMembre(){
+        $this->load->view('newMbr');
     }
     public function modifMembre($ids){
         $nom=$this->input->post('nom');
@@ -211,7 +220,9 @@ class admin extends CI_Controller {
         $list['part']=$this->Adm->AllPartenaire();
         $this->load->view('Admin/partenaires',$list);
     }
-
+    public function newPartenaire(){
+        $this->load->view('newPart');
+    }
     public function AddPart(){
         $nom=$this->input->post('nom');
         $img=$this->input->post('img');
@@ -257,6 +268,10 @@ class admin extends CI_Controller {
         $this->load->view('Admin/services',$list);
     }
 
+    public function newServ(){
+        $this->load->view('newService');
+    }
+
     public function AddServ(){
         $nom=$this->input->post('nom');
         $logo=$this->input->post('logo');
@@ -293,6 +308,10 @@ class admin extends CI_Controller {
         $this->load->model('Adm');
         $liste['adm']=$this->Adm->AllAdmin();
         $this->load->view('Admin/admins',$liste);
+    }
+
+    public function newAdmin(){
+        $this->load->view('newAdm');
     }
 
     public function AddAdmin(){
@@ -339,6 +358,11 @@ class admin extends CI_Controller {
         $liste['rpc']=$this->Adm->AllReponces();
         $this->load->view('reponces',liste);
     }
+
+    public function newReponce(){
+        $this->load->veiw('newRep');
+    }
+
     public function AddReponce($idadm){
         $msg=$this->input->post('msg');
         $question=$this->input->post('qst');

@@ -26,4 +26,4 @@
 
     </tbody>
 </table>
-
+<button class="btn-outline-light"><a href="<?= site_url('admins/newMembre');?>">Nouveau Membre</a></button>

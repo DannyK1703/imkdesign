@@ -20,3 +20,4 @@
 
     </tbody>
 </table>
+<button class="btn-outline-light"><a href="<?= site_url('admins/newCategorie');?>">Nouvelle Categorie</a></button>

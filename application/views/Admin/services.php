@@ -25,5 +25,6 @@
 
     </tbody>
 </table>
+<button class="btn-outline-light"><a href="<?= site_url('admins/newService');?>">Nouveau Service</a></button>
 
 

@@ -69,7 +69,11 @@
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <?php  $a=$this->session->login;?>
+
+
+                <?= $this->session->login;?>
+
+
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >
                     <a href="<?=site_url('admin/deconnecter');?>"><?=$a?></a></button>
             </form>

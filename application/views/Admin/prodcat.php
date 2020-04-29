@@ -28,4 +28,4 @@
 
     </tbody>
 </table>
-<button>Nouvel Article</button>
+<button class="btn-outline-light"><a href="<?= site_url('admins/newArticle');?>">Nouvel Article</a></button>

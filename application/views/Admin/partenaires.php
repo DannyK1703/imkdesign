@@ -24,5 +24,5 @@
 
     </tbody>
 </table>
-
+<button class="btn-outline-light"><a href="<?= site_url('admins/newPartenaire');?>">Nouveau Partenaire</a></button>
 
