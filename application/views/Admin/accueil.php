@@ -1,6 +1,4 @@
-<?php
-include('navbar.php');
-?>
+
 
 <div class=" card col-lg-9  order-1 order-lg-2 mb-5 mb-lg-0">
     <div class="row">

@@ -1,29 +1,31 @@
-<?php
-    include ('navbar.php');
-?>
-<div class="container" style="margin-top: -450px;">
-    <div class="card">
-        <div class="card-header bg-dark">
-            <label for="colFormLabelLg " class="col-sm-3 col-form-label col-form-label-lg text-info">Produits</label>
-        </div>
-        <div class="card-body">
-            <div class="product-item">
-                <div class="pi-pic">
-                    <div class="tag-new">New</div>
-                    <img src="<?=base_url('Assets/img/product/c3y.jpg');?>" alt="">
-                    <div class="pi-links">
-                        <a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-                        <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-                    </div>
-                </div>
-                <div class="pi-text">
-                    <h6>$35,00</h6>
-                    <p>Black and White Stripes Dress</p>
-                </div>
-            </div>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Image</th>
+        <th scope="col">NomArticle</th>
+        <th scope="col">Description</th>
+        <th scope="col">Prix</th>
+        <th scope="col">etat</th>
+        <th scope="col">Operations</th>
 
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    $i=0;
+    foreach ($prods as $art){
+        echo '<tr></tr><th scope="row">'.$i.'</th>
+            <td><img style="max-width: 50px;max-height: 50px" src="'.base_url('Assets/images/product/"'.$art->imgArticle).'/></td>
+            <td>'.$art->NomArticle.'</td>
+            <td>'.$art->DescArticle.'</td>
+            <td>'.$art->PrixArticle.'</td>
+            <td>'.$art->etat.'</td>
+            <td><a href="">modif</a><a href="">supp</a></tr>';
+        $i++;
+    }
+    ?>
 
-        </div>
-        <div class="card-footer text-muted bg-dark" >
-            <button class="" type="submit">exit</button>
-        </div>
+    </tbody>
+</table>
+<button>Nouvel Article</button>

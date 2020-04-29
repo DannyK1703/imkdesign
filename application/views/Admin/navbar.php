@@ -32,36 +32,51 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-    <header>
-        <div class="pos-f-t">
-            <div class="collapse" id="navbarToggleExternalContent">
-                <div class="bg-dark p-4">
-                <h4 style="color: #2cc36b;text-align: center"><?= $this->session->login?></h4>
-                <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex" style="margin-top:50px;">
 
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-                    <button class="btn btn-outline-light btn-lg " type="button" ><li><a href="<?=site_url('admin/index');?>">Home Page</a></li></button>
-                    <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('Admin/categories');?>">Category</a></li></button>
-                    <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/Achat');?>">Cart Page</a></li></button>
-                    <button class="btn btn-outline-light btn-lg" type="button" >    <li><a href="<?=site_url('admin/msg');?>">Messages</a></li></button>
-                    <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/services');?>">Services</a></li></button>
-                    <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/equipe');?>">Membres</a></li></button>
-                    <button class="btn btn-outline-light btn-lg" type="button" ><li><a href="<?=site_url('admin/partenaires');?>">Partenaires</a></li></button>
-                    <li ><a class="btn btn-bd-download d-none d-lg-inline-block mr-md-3" href="<?=site_url('admin/deconnect');?>">Deconexion</a></li>
-                    <!-- </ul>
-                    </li>-->
-                </ul>
-            </div>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="<?=site_url('admin/accueil');?>">Home Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=site_url('Admin/categories');?>">Category</a>
+                </li>
+                <li class="nav-item">
 
-            </div>
+                    <a class="nav-link" href="<?=site_url('admin/prodcat');?>">Cart Page</a>
+                </li>
+                <li class="nav-item">
 
-        <nav class="navbar navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
+                    <a class="nav-link" href="<?=site_url('admin/msg');?>">Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=site_url('admin/service');?>">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=site_url('admin/Membres');?>">Membres</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=site_url('admin/Partenaires');?>">Partenaires</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?=site_url('admin/Admins');?>">Admins</a>
+                </li>
+
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <?php  $a=$this->session->login;?>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" >
+                    <a href="<?=site_url('admin/deconnecter');?>"><?=$a?></a></button>
+            </form>
         </div>
-    </header>
+    </nav>
+
+
 	<!-- Header section -->
 
 

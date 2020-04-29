@@ -21,6 +21,8 @@ class Adm extends CI_Model
 
     //Questions model for admin
     function listQuestions(){
+        $etat=array('etat'=>0);
+        $this->db->where($etat);
         return $this->db->get($this->questions)->result();
     }
 
@@ -192,5 +194,23 @@ class Adm extends CI_Model
         $q=$this->db->get($this->achats);
         $res=$q->result();
         return $res;
+    }
+
+    //Admin Model for Admin
+
+    function AllAdmin(){
+        return $this->db->get($this->admin)->result();
+    }
+    function AddAdmin($data){
+        $this->db->insert($this->admin, $data);
+    }
+    function DeleteAdmin($id){
+        $this->db->where($id);
+        $this->db->delete($this->admin);
+    }
+    function UpdateAdmin($id,$data){
+        $this->db->set($data);
+        $this->db->where($id);
+        $this->db->update($this->admin);
     }
 }
