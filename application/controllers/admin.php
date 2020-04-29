@@ -27,9 +27,9 @@ class admin extends CI_Controller {
             $res = $this->Adm->authentification($Auth);
             if (count($res) > 0) {
                 $user = $res[0];
-                $ret = array('login' => $user->Login, 'mdp' => $user->Mdp, 'is_connected' => true);
+                $ret = array('login' => $user->Login, 'mdp' => $user->Mdp, 'connected' => true);
 
-                if ($this->session->is_connected) {
+                if ($ret['connected']) {
                     $this->session->set_userdata($ret);
                     $this->load->model('Adm');
                     $liste['categ'] = $this->Adm->AllCategories();
@@ -135,6 +135,17 @@ class admin extends CI_Controller {
         $this->load->view('Admin/newCat');
     }
 
+    public function modifierCat($id){
+        $ids=array('idcategorie'=>$id);
+        $this->load->model('Adm');
+        $ret=$this->Adm->SingleCategorie($ids);
+        if (count($ret)==1){
+            $cat=$ret[0];
+            $this->load->view('Admin/modifcat',$cat);
+        }
+
+    }
+
     public function modifCat($id){
         $nom=$this->input->post('titre');
         $desc=$this->input->post('desc');
@@ -174,8 +185,20 @@ class admin extends CI_Controller {
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/membres',$liste);
     }
+
+    public function modifierMembre($id){
+        $ids=array('idMembre'=>$id);
+        $this->load->model('Adm');
+        $ret=$this->Adm->SingleMembre($ids);
+        if (count($ret)==1){
+            $cat=$ret[0];
+            $this->load->view('Admin/modifmbr',$cat);
+        }
+
+    }
+
     public function newMembre(){
-        $this->load->view('newMbr');
+        $this->load->view('Admin/newMbr');
     }
     public function modifMembre($ids){
         $nom=$this->input->post('nom');
@@ -227,6 +250,16 @@ class admin extends CI_Controller {
     public function newPartenaire(){
         $this->load->view('newPart');
     }
+    public function modifierPart($id){
+        $ids=array('idPartenaires'=>$ids);
+        $this->load->model('Adm');
+        $ret=$this->Adm->singlePartenaire($ids);
+        if (count($ret)==1){
+            $cat=$ret[0];
+            $this->load->view('Admin/modifpart',$cat);
+        }
+
+    }
     public function AddPart(){
         $nom=$this->input->post('nom');
         $img=$this->input->post('img');
@@ -273,7 +306,18 @@ class admin extends CI_Controller {
         $this->load->view('Admin/services',$list);
     }
 
-    public function newServ(){
+    public function modifierServ($id){
+        $ids=array('idService'=>$id);
+        $this->load->model('Adm');
+        $ret=$this->Adm->SingleService($ids);
+        if (count($ret)==1){
+            $cat=$ret[0];
+            $this->load->view('Admin/modifserv',$cat);
+        }
+
+    }
+
+    public function newService(){
         $this->load->view('newService');
     }
 
@@ -314,6 +358,18 @@ class admin extends CI_Controller {
         $liste['adm']=$this->Adm->AllAdmin();
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/admins',$liste);
+    }
+
+
+    public function modifierAdmin($id){
+        $ids=array('idAdmin'=>$id);
+        $this->load->model('Adm');
+        $ret=$this->Adm->SingleAdmin($ids);
+        if (count($ret)==1){
+            $cat=$ret[0];
+            $this->load->view('Admin/modifAdm',$cat);
+        }
+
     }
 
     public function newAdmin(){

@@ -5,7 +5,7 @@ class Adm extends CI_Model
 {
     public $admin='Admin';
     public $articles='Articles';
-    public $membres='membres';
+    public $membres='membre';
     public $categories='categorie';
     public $partenaires='Partenaires';
     public $questions='Questions';
@@ -109,12 +109,17 @@ class Adm extends CI_Model
     function AddPartenaire($data){
         $this->db->insert($this->partenaires, $data);
     }
-
+    function singlePartenaire($id){
+        $this->db->where($id);
+        $q=$this->db->get($this->partenaires);
+        $res=$q->result();
+        return $res;
+    }
 
     //Membres Model for Admin
 
     function AllMembres(){
-        return $this->db->get($this->partenaires)->result();
+        return $this->db->get($this->membres)->result();
     }
     function UpdateMembre($id,$mbr){
         $this->db->set($mbr);
@@ -212,5 +217,11 @@ class Adm extends CI_Model
         $this->db->set($data);
         $this->db->where($id);
         $this->db->update($this->admin);
+    }
+    function SingleAdmin($id){
+        $this->db->where($id);
+        $q=$this->db->get($this->admin);
+        $res=$q->result();
+        return $res;
     }
 }

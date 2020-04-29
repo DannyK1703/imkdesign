@@ -18,13 +18,13 @@
             <td>'.$mbr->DescService.'</td>
             <td><img src="'.base_url('Assets/membres/'.$mbr->logoService).'"</td>
             
-            <td><a href="">modif</a><a href="">supp</a></tr>';
-        $i++;
+            <td><a class="btn btn-outline-primary" href="'.site_url('Admin/modifierServ/'.$mbr->idServvice).'"><i class="flaticon-edit" ></i></a>
+                <a class="btn btn-outline-danger" href="'.site_url('Admin/suppServ/'.$mbr->idService).'"><i class="flaticon-cancel" ></i></a></tr>';
+            $i++;
     }
     ?>
 
     </tbody>
 </table>
-<button class="btn-outline-light"><a href="<?= site_url('admins/newService');?>">Nouveau Service</a></button>
-
+<a style="max-width: 40%;margin-left: 30%;" class="btn btn-outline-info btn-lg btn-block" href="<?= site_url('admin/newService');?>"><i class="flaticon-add" ></i>Nouveau Service</a>
 
