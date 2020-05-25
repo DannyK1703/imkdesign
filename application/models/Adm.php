@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Adm extends CI_Model
 {
-    public $admin='Admin';
+    public $admin='admin';
     public $articles='Articles';
     public $membres='membre';
     public $categories='categorie';
@@ -210,6 +210,7 @@ class Adm extends CI_Model
         $this->db->insert($this->admin, $data);
     }
     function DeleteAdmin($id){
+
         $this->db->where($id);
         $this->db->delete($this->admin);
     }

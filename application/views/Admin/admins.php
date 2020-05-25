@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" style="max-width: 70%;margin-left: 15%">
     <thead class="thead-dark">
     <tr>
         <th scope="col">N°</th>
@@ -11,19 +11,24 @@
     </thead>
     <tbody>
     <?php
-    $i=0;
+    $i=1;
+    $a=$this->session->id;
     foreach ($adm as $mbr){
+
         echo '<tr></tr><th scope="row">'.$i.'</th>
             <td>'.$mbr->NomAdmin.'</td>
             <td>'.$mbr->EmailAdmin.'</td>
-            <td><img src="'.base_url('Assets/membres/'.$mbr->img).'"</td>
+            <td><img style="max-width: 80px;max-height: 80%" src="'.base_url('Assets/images/Admins/'.$mbr->img).'"</td>
             
-            <td><a href="">modif</a><a href="">supp</a></tr>';
-        $i++;
+            
+            
+<td> <a class="btn btn-outline-danger" href="'.site_url('Admin/suppAdmin/'.$mbr->idAdmin.'/'.$a).'"><i class="flaticon-cancel" ></i></a></tr>';
+    $i++;
     }
     ?>
 
     </tbody>
-</table>
+    </table>
+    <a style="max-width: 40%;margin-left: 30%;" class="btn btn-outline-info btn-lg btn-block" href="<?= site_url('Admin/newAdmin');?>"><i class="flaticon-add" ></i>Nouvel Admin</a>
 
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -34,26 +35,35 @@
 <div class="card text-center align-middle" >
 <form method="post" action="<?php echo site_url('admin/autentification/');?>">
 <div class="card-header bg-dark">
-    <label for="colFormLabelLg " class="col-sm-3 col-form-label col-form-label-lg text-info">Authetification</label>
+    <label for="colFormLabelLg " class="col-sm-3 col-form-label col-form-label-lg text-info" style="font-size: 30px"><i style="font-size: 50px" class="flaticon-rocket-launch"></i>Authetification</label>
   </div>
   <div class="card-body">
 
-  <div class="form-group" style="margin-top: 50px;margin-bottom:50px;">
-    
-    <input type="text" value="<?php echo set_value('login')?>" name="login" class="form-control form-control-lg" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Login" style="height: 75px;">
-      <?php echo form_error('login','<em>','</em>') ?>
-  </div>
-  <div class="form-group">
-    
-    <input type="password" value="<?php echo set_value('pwd')?>" name="pwd" class="form-control form-control-lg" id="exampleInputPassword3" placeholder="Password" style="height: 75px;">
-      <?php echo form_error('pwd','<em>','</em>') ?>
-  </div>
-  
+      <div class="form-group row" style="margin-top:5%;">
+
+          <label for="exampleInputEmail3" class="col-sm-2 col-form-label"><i class="flaticon-profile" style="font-size: 50px"></i></label>
+          <div class="col-sm-10">
+              <input type="text" value="<?php echo set_value('login')?>" name="login" class="form-control form-control-lg" id="exampleInputEmail4" aria-describedby="emailHelp" style="height: 75px; width: 60%;" placeholder="Login" required>
+
+          </div>
+          <label for="exampleInputEmail3" class="col-sm-2 col-form-label"><em><?php echo form_error('login')?></em></label>
+      </div>
+      <div class="form-group row" style="margin-top:5%;">
+          <label for="exampleInputPassword3" class="col-sm-2 col-form-label"><i style="font-size: 50px" class="flaticon-unlock"></i></label>
+          <div class="col-sm-10">
+              <input type="password" value="<?php echo set_value('pwd')?>" name="pwd" class="form-control form-control-lg" id="exampleInputPassword3" placeholder="Password" style="height: 75px; width: 60%;">
+
+          </div>
+          <label for="exampleInputEmail3" class="col-sm-2 col-form-label"><em><?php echo form_error('login')?></em></label>
+      </div>
+
+
+
   </div>
   <div class="card-footer text-muted bg-dark" >
-  	<button type="submit" class="btn btn-outline-info btn-lg btn-block" style="max-width:70%; margin-left:15%">Submit</button>
+  	<button type="submit" class="btn btn-outline-info btn-lg btn-block" style="max-width:70%; margin-left:15%"><i style="font-size: 30px" class="flaticon-correct"></i>Submit</button>
   </div>
-  
+
 </form>
 </div> 
 </div>

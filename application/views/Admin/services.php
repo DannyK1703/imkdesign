@@ -1,5 +1,5 @@
-<table class="table">
-    <thead class="thead-dark">
+<table class="table" style="max-width: 70%;margin-left: 15%">
+    <thead class="thead-dark" >
     <tr>
         <th scope="col">N°</th>
         <th scope="col">Nom</th>
@@ -10,15 +10,17 @@
     </tr>
     </thead>
     <tbody>
+
     <?php
     $i=0;
     foreach ($serv as $mbr){
+
         echo '<tr></tr><th scope="row">'.$i.'</th>
             <td>'.$mbr->NomService.'</td>
             <td>'.$mbr->DescService.'</td>
-            <td><img src="'.base_url('Assets/membres/'.$mbr->logoService).'"</td>
+            <td><i  class=" '.$mbr->logoService.'"></i></td>
             
-            <td><a class="btn btn-outline-primary" href="'.site_url('Admin/modifierServ/'.$mbr->idServvice).'"><i class="flaticon-edit" ></i></a>
+            <td><a class="btn btn-outline-primary" href="'.site_url('Admin/modifierServ/'.$mbr->idService).'"><i class="flaticon-edit" ></i></a>
                 <a class="btn btn-outline-danger" href="'.site_url('Admin/suppServ/'.$mbr->idService).'"><i class="flaticon-cancel" ></i></a></tr>';
             $i++;
     }

@@ -20,10 +20,12 @@
 						 <h2>Partenaires</h2> 
 						 <div class="fw-latest-post-widget">
 								<div class="lp-item">
-								<div class="lp-thumb set-bg" data-setbg="<?=base_url('Assets/img/blog-thumbs/2.jpg');?>"></div>
-								
-								<div class="lp-thumb set-bg" data-setbg="<?=base_url('Assets/img/blog-thumbs/2.jpg');?>"></div>
-								
+                                    <?php foreach ($partu as $part){
+                                        echo'<div class="lp-thumb set-bg" data-setbg="'.base_url('Assets/images/part/'.$part->imagePartenaires).'"></div>';
+
+                                    }
+								   ?>
+
 								</div>
 					</div>
 				</div></div>

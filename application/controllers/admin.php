@@ -8,14 +8,24 @@ class admin extends CI_Controller {
         $this->load->view('Admin/index');
     }
 
+    public function indexo(){
+        $this->load->view('essaie');
+    }
+    public function addcart(){
+        $a=array('s'=>'yambo');
+        $this->cart->insert($a);
+        //var_dump($this->cart->contents());
+        $this->load->view('viu');
+    }
+
 //CONNECTIONS FUNCTIONS
     public function autentification(){
         $this->form_validation->set_rules('login','login', 'required|min_length[4]',
             array('required' => 'Ce champs est obligatoire',
-                'min_length' => '4 caractères minimum'));
+                'min_length' => 'Le login dois avoir 4 caractères minimum'));
         $this->form_validation->set_rules('pwd','pwd', 'required|min_length[4]',
             array('required' => 'Ce champs est obligatoire',
-                'min_length' => '4 caractères minimum'));
+                'min_length' => 'Le Mot de passe dois avoir 4 caractères minimum'));
         if($this->form_validation->run()) {
             $name = $this->input->post('login');
             $pwd = $this->input->post('pwd');
@@ -27,28 +37,54 @@ class admin extends CI_Controller {
             $res = $this->Adm->authentification($Auth);
             if (count($res) > 0) {
                 $user = $res[0];
-                $ret = array('login' => $user->Login, 'mdp' => $user->Mdp, 'connected' => true);
+                $ret = array('id'=>$user->idAdmin,'login' => $user->Login, 'nom' =>$user->NomAdmin,'mdp' => $user->Mdp,'connected' => true);
 
-                if ($ret['connected']) {
+                if ($ret['connected'] && $ret['mdp']!='imk2020D') {
                     $this->session->set_userdata($ret);
                     $this->load->model('Adm');
                     $liste['categ'] = $this->Adm->AllCategories();
                     $this->load->view('Admin/navAdmin');
-                    $this->load->view('Admin/categories', $liste);
+                    $this->load->view('Admin/accueil', $liste);
+                }
+                else if($ret['connected'] && $ret['mdp']=='imk2020D')
+                {
+                    $this->load->model('Adm');
+                    $idi=array('idAdmin'=>$ret['id']);
+                    $reto=$this->Adm->SingleAdmin($idi);
+
+                    if (count($reto)==1) {
+                        $cat = $reto[0];
+                        $this->load->view('Admin/navAdmin');
+                        $this->load->view('Admin/modifAdm', $cat);
+                    }
+                }
+                else{
+                    $health_d=array(
+                        'error_login'=> 'login ou mot de passe incorrect'
+                    );
+                    $this->session->set_flashdata($health_d);
+                   $this->load->view('Admin/index');
+                    //echo '2';
                 }
 
             }else{
+                $health_d=array(
+                    'error_login'=> 'login ou mot de passe incorrect'
+                );
+                $this->session->set_flashdata($health_d);
                 $this->load->view('Admin/index');
+                //echo 'zero';
             }
 
 
         }else{
+            //echo '1';
             $this->load->view('Admin/index');
         }
     }
 
     public function deconnecter(){
-        $this->session->unset_userdata('is_connected');
+        $this->session->unset_userdata('connected');
         redirect('Admin/index');
     }
 //ACCUEIL FUNCTIONS
@@ -71,31 +107,64 @@ class admin extends CI_Controller {
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/prodcat',$list);
     }
-    public function newArticle(){
-        $this->load->view('newArt');
+    public function newArticle($id){
+        $list['idcat']=$id;
+        $this->load->view('Admin/navAdmin');
+        $this->load->view('Admin/newArticle',$list);
+    }
+
+    public function modifierArt($id){
+        $ids=array('idArticles'=>$id);
+        $this->load->model('Adm');
+        $ret=$this->Adm->SingleArticle($ids);
+        if (count($ret)==1){
+            $cat=$ret[0];
+            $this->load->view('Admin/navAdmin');
+            $this->load->view('Admin/modifArt',$cat);
+        }
+
     }
     public function AddArticle($idcat){
         $nom=$this->input->post('nom');
         $description=$this->input->post('desc');
         $prix=$this->input->post('prix');
-        $cat=$this->input->post('categorie');
+
         $img=$this->input->post('image');
         $etat=$this->input->post('etat');
+        $config['upload_path']          = './Assets/img/product';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 10055;
+        $config['max_width']            = 102455;
+        $config['max_height']           = 76855;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('image'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+            echo 'echec';
+            //$this->load->view('upload_form', $error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $ty=$data['upload_data'];
+            //echo 'reussite';
         $data=array(
             'NomArticle'=>$nom,
             'DescArticle'=>$description,
             'PrixArticle'=>$prix,
             'like'=>0,
-            'categorie_idcategorie'=>$cat,
+            'categorie_idcategorie'=>$idcat,
             'taille_idtaille'=>1,
             'Color_idColor'=>1,
-            'imgArticle'=>$img,
+            'imgArticle'=>$ty['file_name'],
             'etat'=>$etat
         );
         $this->load->model('Adm');
         $this->Adm->AddArticle($data);
         $this->prodcat($idcat);
-    }
+    }}
 
     public function modifArticle($id,$idcat){
         $nom=$this->input->post('nom');
@@ -103,24 +172,47 @@ class admin extends CI_Controller {
         $prix=$this->input->post('prix');
         $img=$this->input->post('img');
         $etat=$this->input->post('etat');
+        $config['upload_path']          = './Assets/img/product';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['max_size']             = 10055;
+        $config['max_width']            = 102455;
+        $config['max_height']           = 76855;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('img'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+            echo 'echec';
+            //$this->load->view('upload_form', $error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $ty=$data['upload_data'];
+            //echo 'reussite';
         $data=array(
             'NomArticle'=>$nom,
             'DescArticle'=>$desc,
             'PrixArticle'=>$prix,
-            'imgArticle'=>$img,
+            'imgArticle'=>$ty['file_name'],
             'etat'=>$etat
         );
         $ids=array('idArticles'=>$id);
         $this->load->model('Adm');
         $this->Adm->UpdateArticle($data,$ids);
         $this->prodcat($idcat);
-    }
+    }}
 
-    public function suppArticle($idcat,$id){
+    public function suppArticle($id){
         $ids=array('idArticles'=>$id);
         $this->load->model('Adm');
+        $ret=$this->Adm->SingleArticle($ids);
         $this->Adm->DeleteArticle($ids);
-        $this->prodcat($idcat);
+        if (count($ret)==1){
+            $cat=$ret[0];
+            $this->prodcat($cat->categorie_idcategorie);
+        }
     }
 
 //CATEGORIE FUNCTION
@@ -132,6 +224,7 @@ class admin extends CI_Controller {
 
     }
     public function newCategorie(){
+        $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/newCat');
     }
 
@@ -141,6 +234,7 @@ class admin extends CI_Controller {
         $ret=$this->Adm->SingleCategorie($ids);
         if (count($ret)==1){
             $cat=$ret[0];
+            $this->load->view('Admin/navAdmin');
             $this->load->view('Admin/modifcat',$cat);
         }
 
@@ -192,12 +286,14 @@ class admin extends CI_Controller {
         $ret=$this->Adm->SingleMembre($ids);
         if (count($ret)==1){
             $cat=$ret[0];
+            $this->load->view('Admin/navAdmin');
             $this->load->view('Admin/modifmbr',$cat);
         }
 
     }
 
     public function newMembre(){
+        $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/newMbr');
     }
     public function modifMembre($ids){
@@ -205,16 +301,40 @@ class admin extends CI_Controller {
         $desc=$this->input->post('desc');
         $mail=$this->input->post('mail');
         $img=$this->input->post('img');
-        $data=array(
-            'NomMembre'=>$nom,
-            'DescMembre'=>$desc,
-            'email'=>$mail,
-            'imgMembre'=>$img
-        );
-        $id=array('idMembre'=>$ids);
-        $this->load->model('Adm');
-        $this->Adm->UpdateMembre($id,$data);
-        $this->Membres();
+
+        $config['upload_path']          = './Assets/images/membres';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 10055;
+        $config['max_width']            = 102455;
+        $config['max_height']           = 76855;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('img'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+            echo 'echec';
+            //$this->load->view('upload_form', $error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $ty=$data['upload_data'];
+            $data=array(
+                'NomMembre'=>$nom,
+                'DescMembre'=>$desc,
+                'email'=>$mail,
+                'imgMembre'=>$ty['file_name']
+            );
+
+            $id=array('idMembre'=>$ids);
+            $this->load->model('Adm');
+            $this->Adm->UpdateMembre($id,$data);
+            $this->Membres();
+        }
+
+
+
     }
     public function suppMembre($id){
         $ids=array('idMembre'=>$id);
@@ -222,22 +342,42 @@ class admin extends CI_Controller {
         $this->Adm->DeleteMembres($ids);
         $this->Membres();
     }
-    public function AddMember(){
+    public function AddMembre(){
         $nom=$this->input->post('nom');
         $desc=$this->input->post('desc');
         $mail=$this->input->post('mail');
         $img=$this->input->post('img');
-        $data=array(
-            'NomMembre'=>$nom,
-            'DescMembre'=>$desc,
-            'email'=>$mail,
-            'imgMembre'=>$img
-        );
 
+        $config['upload_path']          = './Assets/images/membres';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 10055;
+        $config['max_width']            = 102455;
+        $config['max_height']           = 76855;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('img'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+            echo 'echec';
+            //$this->load->view('upload_form', $error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $ty=$data['upload_data'];
+            $data=array(
+                'NomMembre'=>$nom,
+                'DescMembre'=>$desc,
+                'email'=>$mail,
+                'imgMembre'=>$ty['file_name']
+            );
+
+            //echo 'reussite';
         $this->load->model('Adm');
         $this->Adm->AddMembre($data);
         $this->Membres();
-    }
+    }}
 
 
     //PARTAINERS FUNCTIONS
@@ -248,14 +388,16 @@ class admin extends CI_Controller {
         $this->load->view('Admin/partenaires',$list);
     }
     public function newPartenaire(){
-        $this->load->view('newPart');
+        $this->load->view('Admin/navAdmin');
+        $this->load->view('Admin/newPart');
     }
     public function modifierPart($id){
-        $ids=array('idPartenaires'=>$ids);
+        $ids=array('idPartenaires'=>$id);
         $this->load->model('Adm');
         $ret=$this->Adm->singlePartenaire($ids);
         if (count($ret)==1){
             $cat=$ret[0];
+            $this->load->view('Admin/navAdmin');
             $this->load->view('Admin/modifpart',$cat);
         }
 
@@ -265,30 +407,68 @@ class admin extends CI_Controller {
         $img=$this->input->post('img');
         $web=$this->input->post('web');
 
+        $config['upload_path']          = './Assets/images/part';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 10055;
+        $config['max_width']            = 102455;
+        $config['max_height']           = 76855;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('img'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+            echo 'echec';
+            //$this->load->view('upload_form', $error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $ty=$data['upload_data'];
+
         $data=array(
             'NomPartenaires'=>$nom,
-            'imagePartenaires'=>$img,
+            'imagePartenaires'=>$ty['file_name'],
             'WebPartenaires'=>$web
         );
         $this->load->model('Adm');
         $this->Adm->AddPartenaire($data);
         $this->Partenaires();
-    }
+    }}
     public function ModifPart($id){
         $nom=$this->input->post('nom');
         $img=$this->input->post('img');
         $web=$this->input->post('web');
 
+        $config['upload_path']          = './Assets/images/part';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 10055;
+        $config['max_width']            = 102455;
+        $config['max_height']           = 76855;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('img'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+            echo 'echec';
+            //$this->load->view('upload_form', $error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $ty=$data['upload_data'];
+
         $data=array(
             'NomPartenaires'=>$nom,
-            'imagePartenaires'=>$img,
+            'imagePartenaires'=>$ty['file_name'],
             'WebPartenaires'=>$web
         );
         $ids=array('idPartenaires'=>$id);
         $this->load->model('Adm');
         $this->Adm->UpdatePartenaire($ids,$data);
         $this->Partenaires();
-    }
+    }}
     public function suppPart($id){
         $ids=array('idPartenaires'=>$id);
         $this->load->model('Adm');
@@ -312,13 +492,15 @@ class admin extends CI_Controller {
         $ret=$this->Adm->SingleService($ids);
         if (count($ret)==1){
             $cat=$ret[0];
+            $this->load->view('Admin/navAdmin');
             $this->load->view('Admin/modifserv',$cat);
         }
 
     }
 
     public function newService(){
-        $this->load->view('newService');
+        $this->load->view('Admin/navAdmin');
+        $this->load->view('Admin/newServ');
     }
 
     public function AddServ(){
@@ -360,6 +542,12 @@ class admin extends CI_Controller {
         $this->load->view('Admin/admins',$liste);
     }
 
+    public function Admons(){
+
+
+        $this->load->view('Admin/admons');
+    }
+
 
     public function modifierAdmin($id){
         $ids=array('idAdmin'=>$id);
@@ -367,13 +555,15 @@ class admin extends CI_Controller {
         $ret=$this->Adm->SingleAdmin($ids);
         if (count($ret)==1){
             $cat=$ret[0];
+            $this->load->view('Admin/navAdmin');
             $this->load->view('Admin/modifAdm',$cat);
         }
 
     }
 
     public function newAdmin(){
-        $this->load->view('newAdm');
+        $this->load->view('Admin/navAdmin');
+        $this->load->view('Admin/newAdmin');
     }
 
     public function AddAdmin(){
@@ -383,27 +573,82 @@ class admin extends CI_Controller {
         $data=array('NomAdmin'=>$nom,
                     'EmailAdmin'=>$mail,
                     'login'=>$login,
-                    'Mdp'=>'imk2020',
+                    'Mdp'=>'imk2020D',
                     'img'=>'default.png');
         $this->load->model('Adm');
         $this->Adm->AddAdmin($data);
         $this->Admins();
     }
-
+    public function exo(){
+        $this->load->view('Admin/exoupload');
+    }
     public function ModifAdmin($id){
         $mail=$this->input->post('mail');
         $login=$this->input->post('login');
         $mdp=$this->input->post('mdp');
-        $img=$this->input->post('img');
-        $data=array(
-            'EmailAdmin'=>$mail,
-            'login'=>$login,
-            'Mdp'=>$mdp,
-            'img'=>$img);
+        $img=$this->input->post('userFile');
+
+
+        $config['upload_path']          = './Assets/images/Admins';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 10055;
+        $config['max_width']            = 102455;
+        $config['max_height']           = 76855;
+
+        $this->load->library('upload', $config);
+
+        if ( ! $this->upload->do_upload('userfile'))
+        {
+            $error = array('error' => $this->upload->display_errors());
+            echo 'echec';
+            //$this->load->view('upload_form', $error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+            $ty=$data['upload_data'];
+            //echo 'reussite';
+            //*$this->load->view('upload_success', $data);
+            $datas=array(
+                'EmailAdmin'=>$mail,
+                'Login'=>$login,
+                'Mdp'=>$mdp,
+                'img'=>$ty['file_name']);
+            $ids=array('idAdmin'=>$id);
+            $this->load->model('Adm');
+            $this->Adm->UpdateAdmin($ids,$datas);
+            $Auth=array('Login'=>$login,'Mdp'=>$mdp);
+            $this->load->model('Adm');
+            $res = $this->Adm->authentification($Auth);
+            if (count($res) > 0) {
+                $user = $res[0];
+            $ret = array('id'=>$user->idAdmin,'login' => $user->Login, 'nom' =>$user->NomAdmin,'mdp' => $user->Mdp, 'connected' => true);
+                $this->session->set_userdata($ret);
+            $this->Admins();}
+
+    }}
+    public function SuppAdmin($id,$idac){
         $ids=array('idAdmin'=>$id);
         $this->load->model('Adm');
-        $this->Adm->UpdateAdmin($ids,$data);
-        $this->Admins();
+        $ret=$this->Adm->SingleAdmin($ids);
+        if (count($ret)==1){
+            $cat=$ret[0];
+            if($cat->Login!='imkdesign'){
+                    if($idac==1){
+                        $this->load->view('Admin');
+                        $this->Adm->DeleteAdmin($ids);
+                        $this->Admins();
+                    }
+                    else{
+                        $this->Admons();
+                    }
+
+            }
+            else{
+                $this->Admons();
+            }
+        }
+
     }
 
 //MSG FUNCTIONS
@@ -411,8 +656,8 @@ class admin extends CI_Controller {
     public function msg(){
         $this->load->model('Adm');
         $liste['qst']=$this->Adm->listQuestions();
-        $this->load->view('navAdmin');
-        $this->load->view('question',liste);
+        $this->load->view('Admin/navAdmin');
+        $this->load->view('Admin/messages',liste);
     }
 
     //REPONCES FONCTIONS

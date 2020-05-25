@@ -1,4 +1,4 @@
- <?php include_once('navbar.php');?>
+
 
 	<!-- Page info -->
 	<div class="page-top-info">
@@ -122,8 +122,8 @@
 						<div class="col-lg-4 col-sm-6">
 							<div class="product-item">
 								<div class="pi-pic">
-									<div class="tag-sale">new</div>
-									<img src="'.base_url('Assets/img/product/6.jpg').'" alt="">
+									<div class="tag-sale">'.$prod->etat.'</div>
+									<img style="max-height: 350px;min-height: 350px" src="'.base_url('Assets/img/product/'.$prod->imgArticle).'" alt="">
 									<div class="pi-links">
 										<a href="" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
 										<a href="'.site_url('welcome/SingleArt/'.$prod->idArticles).'" class="wishlist-btn"><i class="flaticon-sun"></i></a>
@@ -131,7 +131,7 @@
 								</div>
 								<div class="pi-text">';
 
-                                          echo'  <h6>'.$prod->PrixArticle.'</h6>
+                                          echo'  <h6>'.$prod->PrixArticle.'$</h6>
                                         <p>'.$prod->NomArticle.'</p>
                                         
                                         </div>

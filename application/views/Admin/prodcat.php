@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" style="max-width: 70%;margin-left: 15%">
     <thead class="thead-dark">
     <tr>
         <th scope="col">N°</th>
@@ -16,16 +16,18 @@
     $i=0;
     foreach ($prods as $art){
         echo '<tr></tr><th scope="row">'.$i.'</th>
-            <td><img style="max-width: 50px;max-height: 50px" src="'.base_url('Assets/images/product/"'.$art->imgArticle).'/></td>
+            <td><img style="min-width:80px;max-width: 80px;max-height: 80px;min-height: 80px" src="'.base_url('Assets/img/product/'.$art->imgArticle).'"/></td>
             <td>'.$art->NomArticle.'</td>
             <td>'.$art->DescArticle.'</td>
             <td>'.$art->PrixArticle.'</td>
             <td>'.$art->etat.'</td>
-            <td><a href="">modif</a><a href="">supp</a></tr>';
-        $i++;
+           
+<td><a class="btn btn-outline-primary" href="'.site_url('Admin/modifierArt/'.$art->idArticles).'"><i class="flaticon-edit" ></i></a>
+    <a class="btn btn-outline-danger" href="'.site_url('Admin/suppArticle/'.$art->idArticles).'"><i class="flaticon-cancel" ></i></a></tr>';
+    $i++;
     }
     ?>
 
     </tbody>
-</table>
-<button class="btn-outline-light"><a href="<?= site_url('admins/newArticle');?>">Nouvel Article</a></button>
+    </table>
+    <a style="max-width: 40%;margin-left: 30%;" class="btn btn-outline-info btn-lg btn-block" href="<?= site_url('Admin/newArticle/'.$art->categorie_idcategorie);?>"><i class="flaticon-add" ></i>Nouvel Article</a>

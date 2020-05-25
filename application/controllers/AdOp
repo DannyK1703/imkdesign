@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class AdOp extends CI_Controller {
+public class AdOp extends CI_Controller {
 
 
 

@@ -16,7 +16,12 @@ class wel extends CI_Model
     public $achat='Achat';
     public $client='client';
 
-
+    function authentification($data){
+        $this->db->where($data);
+        $q=$this->db->get($this->client);
+        $res=$q->result();
+        return $res;
+    }
     //Product Model for user
     function AllProduits(){
         return $this->db->get($this->produit)->result();

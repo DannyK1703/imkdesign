@@ -3,8 +3,8 @@
 <head>
 	<title>Divisima | eCommerce Template</title>
 	<meta charset="UTF-8">
-	<meta name="description" content=" Divisima | eCommerce Template">
-	<meta name="keywords" content="divisima, eCommerce, creative, html">
+	<meta name="description" content=" IMK | eCommerce WebSite">
+	<meta name="keywords" content="IMK, eCommerce, Web, site">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->
 	<link href="img/favicon.ico" rel="shortcut icon"/>
@@ -44,10 +44,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?=site_url('Admin/categories');?>">Category</a>
                 </li>
-                <li class="nav-item">
 
-                    <a class="nav-link" href="<?=site_url('admin/prodcat');?>">Cart Page</a>
-                </li>
                 <li class="nav-item">
 
                     <a class="nav-link" href="<?=site_url('admin/msg');?>">Messages</a>

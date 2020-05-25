@@ -1,4 +1,4 @@
-<?php include_once('navbar.php');?>
+
 	<!-- Page info -->
 	<div class="page-top-info">
 		<div class="container">

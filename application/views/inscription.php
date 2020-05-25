@@ -53,7 +53,7 @@
     <section class="contact-info" style="margin-left: 15%;margin-right: 15%;">
         <button class="btn btn-link btn-lg btn-block"><img src="<?= base_url('Assets/img/icons/l3.png');?>" style="max-width: 200px"/></button>
         <div class="" style="font-size: 40px">
-            <form class="contact-form" mathod="post" action="<?=  site_url('welcome/inscript');?>">
+            <form class="contact-form" method="post" action="<?=  site_url('welcome/inscript');?>">
                 <input type="text" name="nom" value="<?php echo set_value('nom')?>" placeholder="Your name">
                 <?php echo form_error('nom','<em>','</em>') ?>
                 <input type="text" name="login" value="<?php echo set_value('login')?>" placeholder="Your Login">

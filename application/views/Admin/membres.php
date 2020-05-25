@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" style="max-width: 70%;margin-left: 15%">
     <thead class="thead-dark">
     <tr>
         <th scope="col">N°</th>
@@ -18,7 +18,7 @@
             <td>'.$mbr->NomMembre.'</td>
             <td>'.$mbr->DescMembre.'</td>
             <td>'.$mbr->email.'</td>
-            <td><img style="max-width: 40px;max-height: 40px" src="'.base_url('Asset/images/membres/'.$mbr->imgMembre).'"></td>
+            <td><img style="max-width: 80px;max-height: 80px ;min-height: 80px;min-width: 80px" src="'.base_url('Assets/images/membres/'.$mbr->imgMembre).'"/></td>
             <td><a class="btn btn-outline-primary" href="'.site_url('Admin/modifierMembre/'.$mbr->idMembre).'"><i class="flaticon-edit" ></i></a>
                 <a class="btn btn-outline-danger" href="'.site_url('Admin/suppMembre/'.$mbr->idMembre).'"><i class="flaticon-cancel" ></i></a></tr>';
             $i++;

@@ -1,4 +1,4 @@
-<?php include_once('navbar.php');?>
+
 
 	<!-- Page info -->
 	<div class="page-top-info">
@@ -48,4 +48,3 @@
 
 	<!-- Related product section end -->
 
-<?php include_once('footer.php');?>

@@ -4,25 +4,25 @@
         margin-left: 25%;
     }
 </style>
-<h4 style="text-align: center;margin-bottom: 50px;margin-top: 50px">Ajouter Service</h4>
-<form method="post" action="<?=site_url('Admin/AddServ');?>">
+<h4 style="text-align: center;margin-bottom: 50px;margin-top: 50px">Modifier Service</h4>
+<form method="post" action="<?=site_url('Admin/modifServ/'.$idService);?>">
 
     <div class="form-group row">
         <label for="inputText3" class="col-sm-2 col-form-label">Nom</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="exampleInputText3"  name ="nom">
+            <input type="text" class="form-control" id="exampleInputText3" value="<?=$NomService?>" name ="nom" required>
         </div>
     </div>
     <div class="form-group row">
         <label for="inputText3" class="col-sm-2 col-form-label">Description</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="exampleInputText3"  name="desc" required>
+            <input type="text" class="form-control" id="exampleInputText3" value="<?=$DescService?>" name="desc" required>
         </div>
     </div>
     <div class="form-group row">
         <label for="inputFile3" class="col-sm-2 col-form-label">Logo</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="exampleInputText3"  name="logo" required>
+            <input type="text" class="form-control" id="exampleInputText3" value="<?=$logoService?>" name="logo" required>
         </div>
     </div>
 

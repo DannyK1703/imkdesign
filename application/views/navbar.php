@@ -79,7 +79,7 @@
                 font-family: Flaticon;
                 font-size: 180px;
                 font-style: normal;
-                margin-left: 20px;
+                margin-left: 0px;
                 color: #333;
             }
             [id^="cor"]:before,[id*="cor"]:before,[id^="cor"]:after,[id*="cor"]:after{
@@ -93,7 +93,7 @@
                 font-family: Flaticon;
                 font-size: 180px;
                 font-style: normal;
-                margin-left: 20px;
+                margin-left: 0px;
                 color: #333;
             }
 
@@ -112,8 +112,57 @@
 						<!-- </ul> 
 					</li>-->
 					<li><a href="#">Blog</a></li>
+                    <?php if($this->session->is_connected){
+                        echo '<button class="btn btn-outline-success my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#exampleModal">
+                '.$this->session->pseudo.'</a></button>';
+
+                    } else echo '';
+                    ?>
+
 				</ul>
 			</div>
-		</nav>
+
+        </nav>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><?php echo $this->session->pseudo?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <table class="table">
+
+                            <tbody>
+                            <tr>
+                                <th scope="row">Nom :</th>
+                                <td><?php echo $this->session->nom?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Phone :</th>
+                                <td><?php echo $this->session->phone?></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email :</th>
+                                <td><?php echo $this->session->email?></td>
+                            </tr></tbody></table>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-outline-success my-2 my-sm-0" >
+                            <a href="<?php echo site_url('welcome/deconnecter');?>">Se Deconnecter</a>
+                        </button>
+                        <button class="btn btn-outline-success my-2 my-sm-0" >
+                            <a href="<?php echo site_url('welcome/ModifProfil');?>">Modifier Mes informations</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</header>
 	<!-- Header section end -->
