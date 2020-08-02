@@ -12,7 +12,26 @@ class Adm extends CI_Model
     public $reponces='Reponce';
     public $services='Service';
     public $achats='Achat';
+
+   /* function __construct() {
+        $this->load->library('encrypt');
+    }
+
+    public function validate($mail, $password) {
+        if (($passwd_crypt = $this->_getUser($mail)) !== FALSE)
+            return (bool) ($password == $passwd_crypt);
+        return false;
+    }
+
+    private function _getUser($mail) {
+        $user = $this->db->select(array('mail', 'password'))->get_where($this->_table, array('mail' => $mail))->row();
+        if (isset($user->password))
+            return $this->encrypt->decode($user->password);
+        return false;
+    }
+*/
     function authentification($data){
+        //$this->db->escape($data);
         $this->db->where($data);
         $q=$this->db->get($this->admin);
         $res=$q->result();
@@ -32,6 +51,7 @@ class Adm extends CI_Model
         return $this->db->get($this->reponces)->result();
     }
     function AddReponce($data){
+        //$this->db->escape($data);
         $this->db->insert($this->reponces, $data);
     }
     function DeleteReponce($id){
@@ -39,6 +59,7 @@ class Adm extends CI_Model
         $this->db->delete($this->reponces);
     }
     function UpdateReponce($id,$data){
+        //$this->db->escape($data);
         $this->db->set($data);
         $this->db->where($id);
         $this->db->update($this->reponces);
@@ -51,6 +72,7 @@ class Adm extends CI_Model
         return $this->db->get($this->articles)->result();
     }
     function SingleArticle($data){
+        //$this->db->escape($data);
         $this->db->where($data);
         $q=$this->db->get($this->articles);
         $res=$q->result();
@@ -70,6 +92,7 @@ class Adm extends CI_Model
         return $res;
     }
     function AddArticle($art){
+        //$this->db->escape($art);
         $this->db->insert($this->articles, $art);
     }
     function UpdateArticle($art,$id){
@@ -98,6 +121,7 @@ class Adm extends CI_Model
         return $res;
     }
     function UpdatePartenaire($id,$part){
+        //$this->db->escape($part);
         $this->db->set($part);
         $this->db->where($id);
         $this->db->update($this->partenaires);
@@ -107,6 +131,7 @@ class Adm extends CI_Model
         $this->db->delete($this->partenaires);
     }
     function AddPartenaire($data){
+        //$this->db->escape($data);
         $this->db->insert($this->partenaires, $data);
     }
     function singlePartenaire($id){
@@ -122,6 +147,7 @@ class Adm extends CI_Model
         return $this->db->get($this->membres)->result();
     }
     function UpdateMembre($id,$mbr){
+        //$this->db->escape($mbr);
         $this->db->set($mbr);
         $this->db->where($id);
         $this->db->update($this->membres);
@@ -131,6 +157,7 @@ class Adm extends CI_Model
         $this->db->delete($this->membres);
     }
     function AddMembre($data){
+        //$this->db->escape($data);
         $this->db->insert($this->membres, $data);
     }
     function SingleMembre($id){
@@ -143,6 +170,7 @@ class Adm extends CI_Model
     //Categorie Model for Admin
 
     function AddCategorie($data){
+        //$this->db->escape($data);
         $this->db->insert($this->categories, $data);
     }
     function SingleCategorie($id){
@@ -155,6 +183,7 @@ class Adm extends CI_Model
         return $this->db->get($this->categories)->result();
     }
     function UpdateCategorie($id,$cat){
+        //$this->db->escape($cat);
         $this->db->set($cat);
         $this->db->where($id);
         $this->db->update($this->categories);
@@ -167,12 +196,14 @@ class Adm extends CI_Model
     //Services Model for Admin
 
     function AddService($data){
+        //$this->db->escape($data);
         $this->db->insert($this->services, $data);
     }
     function AllServices(){
         return $this->db->get($this->services)->result();
     }
     function UpdateService($id,$serv){
+        //$this->db->escape($serv);
         $this->db->set($serv);
         $this->db->where($id);
         $this->db->update($this->services);
@@ -207,6 +238,7 @@ class Adm extends CI_Model
         return $this->db->get($this->admin)->result();
     }
     function AddAdmin($data){
+        //$this->db->escape($data);
         $this->db->insert($this->admin, $data);
     }
     function DeleteAdmin($id){
@@ -215,6 +247,7 @@ class Adm extends CI_Model
         $this->db->delete($this->admin);
     }
     function UpdateAdmin($id,$data){
+        //$this->db->escape($data);
         $this->db->set($data);
         $this->db->where($id);
         $this->db->update($this->admin);

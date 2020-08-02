@@ -13,6 +13,12 @@
             <input type="text" class="form-control" id="exampleInputText3"  name ="nom" required>
         </div>
     </div>
+        <div class="form-group row">
+            <label for="inputText3" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="exampleInputText3"  name ="phone" value="+243" required>
+            </div>
+        </div>
     <div class="form-group row">
         <label for="inputText3" class="col-sm-2 col-form-label">Description</label>
         <div class="col-sm-10">
@@ -25,7 +31,9 @@
             <input type="email" class="form-control" id="exampleInputEmail3"  name="mail" required>
         </div>
     </div>
-    <div class="form-group row">
+        <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>"/>
+
+        <div class="form-group row">
         <label for="inputFile3" class="col-sm-2 col-form-label">Image</label>
         <div class="col-sm-10">
             <input type="file" class="form-control" id="exampleInputFile3"  name="img" required>

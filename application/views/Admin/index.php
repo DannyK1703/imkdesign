@@ -56,7 +56,7 @@
           </div>
           <label for="exampleInputEmail3" class="col-sm-2 col-form-label"><em><?php echo form_error('login')?></em></label>
       </div>
-
+      <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>"/>
 
 
   </div>

@@ -29,12 +29,12 @@
 						<a href="#"><i class="fa fa-dribbble"></i></a>
 						<a href="#"><i class="fa fa-behance"></i></a>
 					</div>
-					<form class="contact-form">
-						<input type="text" placeholder="Your name">
-						<input type="text" placeholder="Your e-mail">
-						<input type="text" placeholder="Subject">
-						<textarea placeholder="Message"></textarea>
-						<button class="site-btn">SEND NOW</button>
+					<form class="contact-form" method="post" action="<?=  site_url('welcome/contacter');?>">
+						<input type="text" placeholder="Your name" name="nom">
+						<input type="email" placeholder="Your e-mail" name="mail">
+						<input type="text" placeholder="Subject" n name="subject">
+						<textarea placeholder="Message" name="msg"></textarea>
+						<button class="site-btn" type="submit">SEND NOW</button>
 					</form>
 				</div>
 			</div>

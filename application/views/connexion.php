@@ -42,6 +42,7 @@
             <div class="site-pagination">
                 <button class="btn btn-light "><a href="<?=  site_url('welcome/index');?>">RETOUR A L'ACCUEIL</a></button> /
                 <a href="">CONNEXION</a>
+
             </div>
         </div>
     </div>
@@ -52,10 +53,11 @@
                 <button class="btn btn-link btn-lg btn-block"><img src="<?= base_url('Assets/img/icons/l3.png');?>" style="max-width: 200px"/></button>
                 <div class="" style="font-size: 40px">
                     <form class="contact-form" method="post" action="<?php echo site_url('Welcome/connection')?>">
-                        <input type="text" name="login"  placeholder="Your Login"style="height: 80px;font-size: 20px">
-                        <?php echo form_error('login','<em>','</em>') ?>
+                       <input type="text" name="login"  placeholder="Your Login"style="height: 80px;font-size: 20px">
+                        <h6><?php echo form_error('login','<em>','</em>') ?></h6>
                         <input type="password" name="pwd"  placeholder="Password" style="height: 80px;font-size: 20px">
-                        <?php echo form_error('pwd','<em>','</em>') ?>
+                        <h6><?php echo form_error('pwd','<em>','</em>') ?></h6>
+                        <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>"/>
                         <button class="site-btn submit-order-btn">Connexion</button>
                           </form>
                     <button class="btn btn-link btn-lg btn-block"><i class="flaticon-profile"></i><a href="<?=site_url('welcome/inscription');?>">S'Inscrire</a></button>

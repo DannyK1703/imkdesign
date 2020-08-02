@@ -1,6 +1,6 @@
 	
 
-
+<div class="container-fluid">
 	<!-- Footer section -->
 	<section class="footer-section">
 		<div class="container">
@@ -8,28 +8,16 @@
 				<a href="<?=site_url('welcome/home');?>"><img src="<?=base_url('Assets/img/icons/logo12.png');?>" alt=""style="height: 80px"></a>
 			</div>
 			<div class="row">
-				<div class="col-lg-3 col-sm-6">
+				<div class="col-lg-4 col-sm-6">
 					<div class="footer-widget about-widget">
 						<h2>About</h2>
 						<p>Donec vitae purus nunc. Morbi faucibus erat sit amet congue mattis. Nullam frin-gilla faucibus urna, id dapibus erat iaculis ut. Integer ac sem.</p>
 						<img src="<?=site_url('Assets/img/cards.png');?>" alt="">
 					</div>
 				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="footer-widget about-widget">
-						 <h2>Partenaires</h2> 
-						 <div class="fw-latest-post-widget">
-								<div class="lp-item">
-                                    <?php foreach ($partu as $part){
-                                        echo'<div class="lp-thumb set-bg" data-setbg="'.base_url('Assets/images/part/'.$part->imagePartenaires).'"></div>';
 
-                                    }
-								   ?>
 
-								</div>
-					</div>
-				</div></div>
-				<div class="col-lg-3 col-sm-6">
+				<div class="col-lg-4 col-sm-6">
 					<div class="footer-widget about-widget">
 						<h2>Questions</h2>
 						<div class="fw-latest-post-widget">
@@ -52,7 +40,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-3 col-sm-6">
+
+				<div class="col-lg-4 col-sm-6">
 					<div class="footer-widget contact-widget">
 						<h2>Contact</h2>
 						<div class="con-info">
@@ -90,7 +79,7 @@
 
 
 				<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> 
-<p class="text-white text-center mt-5">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://CristalTeam.com" target="_blank">CristalTeam</a></p>
+<p class="text-white text-center mt-5">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://CristalTeam.com" target="_blank">Dan Kalombo for CristalTeam</a></p>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 			</div>
 
@@ -103,7 +92,7 @@
 	</section>
 	<!-- Footer section end -->
 
-
+    </div>
 
 	<!--====== Javascripts & Jquery ======-->
 	<script src="<?=base_url('Assets/js/jquery-3.2.1.min.js');?>"></script>

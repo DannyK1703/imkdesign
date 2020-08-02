@@ -12,7 +12,7 @@
     <tbody>
     <?php
     $i=1;
-    $a=$this->session->id;
+    $a=$this->session->login;
     foreach ($adm as $mbr){
 
         echo '<tr></tr><th scope="row">'.$i.'</th>

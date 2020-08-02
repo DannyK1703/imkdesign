@@ -12,6 +12,12 @@
             <input type="text" class="form-control" id="exampleInputText3" value="<?=$NomMembre?>" name ="titre" required>
         </div>
     </div>
+        <div class="form-group row">
+            <label for="inputText3" class="col-sm-2 col-form-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="exampleInputText3" value="<?=$phone?>" name ="phone" required>
+            </div>
+        </div>
     <div class="form-group row">
         <label for="inputText3" class="col-sm-2 col-form-label">Description</label>
         <div class="col-sm-10">
@@ -30,6 +36,7 @@
             <input type="file" class="form-control" id="exampleInputFile3" value="<?=$imgMembre?>" name="img" required>
         </div>
     </div>
+        <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>"/>
 
-    <input style="max-width: 50%;margin-left: 25%;" class="btn btn-outline-primary btn-lg btn-block" type="submit" value="valider">
-</form
+        <input style="max-width: 50%;margin-left: 25%;" class="btn btn-outline-primary btn-lg btn-block" type="submit" value="valider">
+</form>

@@ -1,4 +1,3 @@
-<?php define('BASEPATH') OR exit('No direct script access allowed')?>
 <style>
     .form-group{
         max-width: 50%;
@@ -17,8 +16,9 @@
             <em><?php echo form_error('mail')?></em>
         </div>
     </div>
+        <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>"/>
 
-    <div class="form-group row">
+        <div class="form-group row">
         <label for="inputText3" class="col-sm-2 col-form-label">Login</label>
         <div class="col-sm-10">
             <input type="text" type="text" value="<?= $Login?>"class="form-control" id="exampleInputText3"  name="login" required>

@@ -2,6 +2,7 @@
 
 
 	<!-- Hero section -->
+
 	<section class="hero-section">
 		<div class="hero-slider owl-carousel">
             <div class="hs-item set-bg" data-setbg="<?=base_url('Assets/img/b2.jpg');?>">
@@ -88,9 +89,9 @@
     <div class="section-title">
         <h2>SERVICES</h2>
     </div
-	<div class="container" style="">
 
-		<div class="row mb100">
+    <div class="container">
+		<div class="row " style="margin-left: 15%;margin-right: 15%">
 
 
 			<div class="col-sm-4 wow fadeIn" data-wow-delay="0.2s">
@@ -125,7 +126,7 @@
             </div>
 		</div>
 	</div>
-
+    </div>
 	<!-- letest product section -->
 	<section class="top-letest-product-section">
 		<div class="container">
@@ -134,23 +135,26 @@
 			</div>
 			<div class="product-slider owl-carousel">
                 <?php
+
                 foreach ($produits as $pro){
-                    if($pro->etat=='promotion'){
+
+                    if($pro->idArticles && ($pro->etat=='Promotion' || $pro->etat=='Arrivage') ){
                     echo '<div class="product-item">
 					<div class="pi-pic">
-					    <div class="tag-new">New</div>
+					    <div class="tag-new">'.$pro->etat.'</div>
 						<img src="'.base_url('Assets/img/product/'.$pro->imgArticle).'">
 						<div class="pi-links">
-							<a href="" class="add-card" style="background-color: greenyellow"><i class="flaticon-visible"></i><span>Voir Aricle</span></a>
+							<a href="'.site_url('welcome/SingleArt/'.$pro->idArticles).'" class="add-card" style="background-color: #a9fd00"><i class="flaticon-visible"></i><span>Voir Aricle</span></a>
 							
 						</div>
 					</div>
 					<div class="pi-text">
 						<h6>'.$pro->PrixArticle.'</h6>
 						<p>'.$pro->NomArticle .'</p>
-					</div>
+					</div></div>
 				';
                 }}?>
+
 
 
             </div>
@@ -159,6 +163,7 @@
 	
 
 	<!-- Banner section -->
+
 	<section class="banner-section">
 		<div class="container">
 			<div class="banner set-bg" data-setbg="<?=base_url('Assets/img/banner-bg.jpg');?>">
@@ -169,6 +174,18 @@
 			</div>
 		</div>
 	</section>
-	<!-- Banner section end  -->
+    <div class="section-title">
+        <h2>PARTENAIRES</h2>
+    </div
+<section>
 
-<?php //include_once('footer.php');?>
+    <div class="card-deck pagination justify-content-center" style="height: 250px;width: 96%;margin: 2% ;background-color: #383d41; text-align: center">
+        <?php foreach ($partu as $part){
+        echo' <div class="card" style="max-width: 7%;max-height: 50%;margin-top: 27px">
+            <img src="'.base_url('Assets/images/part/'.$part->imagePartenaires).'" class="card-img-top" alt="..." >
+            
+        </div>';}?>
+
+    </div>
+	<!-- Banner section end  -->
+</section>

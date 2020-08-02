@@ -24,159 +24,92 @@
 							<thead>
 								<tr>
 									<th class="product-th">Product</th>
-									<th class="quy-th">Quantity</th>
+                                    <th class="size-th">Prix U</th>
+									<th class="size-th">Quantity</th>
 									<th class="size-th">SizeSize</th>
 									<th class="total-th">Price</th>
+                                    <th class="actions-th">Supprimer</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
+                            <?php $som=0; foreach ($this->session->pannier as $prods){
+
+                                echo '<tr>
 									<td class="product-col">
-										<img src="img/cart/1.jpg" alt="">
+										<img src="'.base_url('Assets/img/product/'.$prods[0][0]->imgArticle).'" alt="">
 										<div class="pc-title">
-											<h4>Animal Print Dress</h4>
-											<p>$45.90</p>
+										
+											
+											
 										</div>
 									</td>
-									<td class="quy-col">
-										<div class="quantity">
-					                        <div class="pro-qty">
-												<input type="text" value="1">
-											</div>
-                    					</div>
+									<td class="size-col">
+									        <h4>'.$prods[0][0]->PrixArticle.'</h4>
+</td>
+									<td class="size-col">
+										
+												<h4>'.$prods[3].'</h4>
+											
 									</td>
-									<td class="size-col"><h4>Size M</h4></td>
-									<td class="total-col"><h4>$45.90</h4></td>
-								</tr>
-								<tr>
-									<td class="product-col">
-										<img src="img/cart/2.jpg" alt="">
-										<div class="pc-title">
-											<h4>Ruffle Pink Top</h4>
-											<p>$45.90</p>
-										</div>
-									</td>
-									<td class="quy-col">
-										<div class="quantity">
-					                        <div class="pro-qty">
-												<input type="text" value="1">
-											</div>
-                    					</div>
-									</td>
-									<td class="size-col"><h4>Size M</h4></td>
-									<td class="total-col"><h4>$45.90</h4></td>
-								</tr>
-								<tr>
-									<td class="product-col">
-										<img src="img/cart/3.jpg" alt="">
-										<div class="pc-title">
-											<h4>Skinny Jeans</h4>
-											<p>$45.90</p>
-										</div>
-									</td>
-									<td class="quy-col">
-										<div class="quantity">
-					                        <div class="pro-qty">
-												<input type="text" value="1">
-											</div>
-                    					</div>
-									</td>
-									<td class="size-col"><h4>Size M</h4></td>
-									<td class="total-col"><h4>$45.90</h4></td>
-								</tr>
-							</tbody>
+									<td class="size-col"><h4>'.$prods[2].'</h4></td>
+									<td class="total-col"><h4>'.$prods[0][0]->PrixArticle*$prods[3].'</h4></td>
+									<td class="actions-col"><a href="'.site_url('welcome/suppToPan/'.$prods[1]).'" style="margin-left: 30px;">  <i class="flaticon-cancel"></i></a></td>
+									
+								</tr>';
+										$som+=$prods[0][0]->PrixArticle*$prods[3];
+
+                            }
+
+
+							echo '</tbody>
 						</table>
 						</div>
 						<div class="total-cost">
-							<h6>Total <span>$99.90</span></h6>
-						</div>
+							<h6>Total <span>$'.$som.'</span></h6>
+						</div>';?>
 					</div>
 				</div>
 				<div class="col-lg-4 card-right">
-					<form class="promo-code-form">
-						<input type="text" placeholder="Enter promo code">
-						<button>Submit</button>
-					</form>
-					<a href="" class="site-btn">Proceed to checkout</a>
-					<a href="" class="site-btn sb-dark">Continue shopping</a>
-				</div>
+
+					<a href="<?php echo site_url('welcome/factures')?>" class="site-btn">Proceed to checkout</a>
+					</div>
 			</div>
 		</div>
 	</section>
 	<!-- cart section end -->
 
 	<!-- Related product section -->
-	<section class="related-product-section">
-		<div class="container">
-			<div class="section-title text-uppercase">
-				<h2>Continue Shopping</h2>
-			</div>
-			<div class="row">
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<div class="tag-new">New</div>
-							<img src="./img/product/2.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Black and White Stripes Dress</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/5.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/9.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="product-item">
-						<div class="pi-pic">
-							<img src="./img/product/1.jpg" alt="">
-							<div class="pi-links">
-								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
-								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
-							</div>
-						</div>
-						<div class="pi-text">
-							<h6>$35,00</h6>
-							<p>Flamboyant Pink Top </p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!-- Related product section end -->
+    <section class="top-letest-product-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>OONTINUE SHOPPING</h2>
+            </div>
+            <div class="product-slider owl-carousel">
+                <?php
+
+                    foreach ($produits as $pro){
 
 
-<?php include_once('footer.php');?>
+                            echo '<div class="product-item">
+					<div class="pi-pic">
+					    <div class="tag-new">'.$pro->etat.'</div>
+						<img src="'.base_url('Assets/img/product/'.$pro->imgArticle).'">
+						<div class="pi-links">
+							<a href="'.site_url('welcome/SingleArt/'.$pro->idArticles).'" class="add-card" style="background-color: #a9fd00"><i class="flaticon-visible"></i><span>Voir Aricle</span></a>
+							
+						</div>
+					</div>
+					<div class="pi-text">
+						<h6>'.$pro->PrixArticle.'</h6>
+						<p>'.$pro->NomArticle .'</p>
+					</div></div>
+				';
+                        }?>
+
+
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Related product section end -->

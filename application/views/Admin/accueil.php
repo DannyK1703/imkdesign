@@ -139,5 +139,14 @@
 </div>
 </div>
 
+<script src="<?=base_url('Assets/js/jquery-3.2.1.min.js');?>"></script>
+<script src="<?=base_url('Assets/js/bootstrap.min.js');?>"></script>
+<script src="<?=base_url('Assets/js/jquery.slicknav.min.js');?>"></script>
+<script src="<?=base_url('Assets/js/owl.carousel.min.js');?>"></script>
+<script src="<?=base_url('Assets/js/jquery.nicescroll.min.js');?>"></script>
+<script src="<?=base_url('Assets/js/jquery.zoom.min.js');?>"></script>
+<script src="<?=base_url('Assets/js/jquery-ui.min.js');?>"></script>
+<script src="<?=base_url('Assets/js/main.js');?>"></script>
 
+<!-- Header section -->
 </body>

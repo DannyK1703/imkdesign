@@ -32,6 +32,7 @@
 
 </head>
 <body>
+<div class="container-fluid">
 	<!-- Page Preloder -->
 
 	<!-- Header section -->
@@ -56,21 +57,27 @@
 							<button><i class="flaticon-search"></i></button>
 						</form>
 					</div>
-					<div class="col-xl-4 col-lg-5">
-						<div class="user-panel">
-							<div class="up-item">
-								<i class="flaticon-profile"></i>
-								<a href="<?=site_url('welcome/connexion');?>">Sign In</a>  or <a href="<?=site_url('welcome/inscription');?>">Create Account</a>
-							</div>
-							<div class="up-item">
-								<div class="shopping-card">
-									<i class="flaticon-bag"></i>
-									<span>0</span>
-								</div>
-								<a href="#">Shopping Cart</a>
-							</div>
-						</div>
-					</div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="user-panel">
+                    <?php
+
+                        if (!isset($_SESSION['pannier'])){
+                            $a = 0;
+                        }
+                        else $a=count($_SESSION['pannier']);
+
+
+                            echo '<div class="up-item">
+                                <div class="shopping-card">
+                                    <i class="flaticon-bag"></i>
+
+                                    <span>'.$a.'</span>
+                                </div>
+                                <a href="'.site_url('welcome/pannier').'">Shopping Cart</a>
+                            </div>';?>
+                        </div>
+                    </div>
+
 				</div>
 			</div>
 		</div>
@@ -96,24 +103,36 @@
                 margin-left: 0px;
                 color: #333;
             }
+            [class^="flaticon-monitor "]:before, [class*="flaticon-monitor"]:before, [class^="flaticon-monitor"]:after, [class*="flaticon-monitor"]:after {
+                font-family: Flaticon;
+                font-size: 180px;
+                font-style: normal;
+                margin-left: 0px;
+                color: #333;
+            }
+            [class^="flaticon-printer "]:before, [class*="flaticon-printer"]:before, [class^="flaticon-printer"]:after, [class*="flaticon-printer"]:after {
+                font-family: Flaticon;
+                font-size: 180px;
+                font-style: normal;
+                margin-left: 0px;
+                color: #333;
+            }
 
         </style>
 		<nav class="main-navbar">
 			<div class="container">
 				 menu 
 				<ul class="main-menu">
-							<li><a href="<?=site_url('welcome/index');?>">Home Page</a></li>
+							<li><a href="<?=site_url('welcome/index');?>">Accueil</a></li>
+							<li><a href="<?=site_url('welcome/categories');?>">Faire du Shopping</a></li>
+                            <li><a href="<?=site_url('welcome/services');?>">Services </a></li>
+							<li><a href="<?=site_url('welcome/contacts');?>">Nos Contact </a></li>
 
-							<li><a href="<?=site_url('welcome/categories');?>">Category Page</a></li>
-							<li><a href="<?=site_url('welcome/paniets');?>">Cart Page</a></li>
-							<li><a href="<?=site_url('welcome/factures');?>">Checkout Page</a></li>
-							<li><a href="<?=site_url('welcome/contacts');?>">Contact Page</a></li>
-                            <li><a href="<?=site_url('welcome/about');?>">About</a></li>
-						<!-- </ul> 
-					</li>-->
-					<li><a href="#">Blog</a></li>
+                            <li><a href="<?=site_url('welcome/about');?>">Apropos de Nous</a></li>
+
+					        <li><a href="#">Blog</a></li>
                     <?php if($this->session->is_connected){
-                        echo '<button class="btn btn-outline-success my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#exampleModal">
+                        echo '<button class="btn btn-outline-light my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#exampleModal">
                 '.$this->session->pseudo.'</a></button>';
 
                     } else echo '';
@@ -154,11 +173,11 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-outline-success my-2 my-sm-0" >
-                            <a href="<?php echo site_url('welcome/deconnecter');?>">Se Deconnecter</a>
+                        <button class="btn btn-outline-danger my-2 my-sm-0" >
+                            <a style="color: #0000FF" href="<?php echo site_url('welcome/deconnecter');?>">Se Deconnecter</a>
                         </button>
                         <button class="btn btn-outline-success my-2 my-sm-0" >
-                            <a href="<?php echo site_url('welcome/ModifProfil');?>">Modifier Mes informations</a>
+                            <a style="color: #1b1e21" href="<?php echo site_url('welcome/ModifProfil/'.$this->session->id);?>">Modifier Mes informations</a>
                         </button>
                     </div>
                 </div>

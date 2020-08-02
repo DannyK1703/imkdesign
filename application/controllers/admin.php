@@ -20,33 +20,36 @@ class admin extends CI_Controller {
 
 //CONNECTIONS FUNCTIONS
     public function autentification(){
-        $this->form_validation->set_rules('login','login', 'required|min_length[4]',
+        $this->form_validation->set_rules('login','login', 'required|min_length[4]|trim|xss_clean|strip_tags',
             array('required' => 'Ce champs est obligatoire',
                 'min_length' => 'Le login dois avoir 4 caractères minimum'));
-        $this->form_validation->set_rules('pwd','pwd', 'required|min_length[4]',
+        $this->form_validation->set_rules('pwd','pwd', 'required|min_length[4]|trim|xss_clean|strip_tags',
             array('required' => 'Ce champs est obligatoire',
                 'min_length' => 'Le Mot de passe dois avoir 4 caractères minimum'));
         if($this->form_validation->run()) {
-            $name = $this->input->post('login');
-            $pwd = $this->input->post('pwd');
+            $name = $this->input->post('login',TRUE);
+            $pwd = $this->input->post('pwd',TRUE);
+            $pwd=hash('fnv1a64',$pwd);
             $Auth = array(
                 'Login' => $name,
                 'Mdp' => $pwd
             );
+           $this->security->xss_clean($Auth);
             $this->load->model('Adm');
             $res = $this->Adm->authentification($Auth);
             if (count($res) > 0) {
                 $user = $res[0];
-                $ret = array('id'=>$user->idAdmin,'login' => $user->Login, 'nom' =>$user->NomAdmin,'mdp' => $user->Mdp,'connected' => true);
+                $ret = array('id'=>$user->idAdmin,'login' => $user->Login,'img'=>$user->img, 'nom' =>$user->NomAdmin,'connected' => true,'email'=>$user->EmailAdmin);
 
-                if ($ret['connected'] && $ret['mdp']!='imk2020D') {
+                if ($ret['connected'] && $user->Mdp!=hash('fnv1a64','imk2020D')) {
+
                     $this->session->set_userdata($ret);
                     $this->load->model('Adm');
                     $liste['categ'] = $this->Adm->AllCategories();
-                    $this->load->view('Admin/navAdmin');
+                    $this->load->view('Admin/navAdmin',$user);
                     $this->load->view('Admin/accueil', $liste);
                 }
-                else if($ret['connected'] && $ret['mdp']=='imk2020D')
+                else if($ret['connected'] && $user->Mdp==hash('fnv1a64',$pwd))
                 {
                     $this->load->model('Adm');
                     $idi=array('idAdmin'=>$ret['id']);
@@ -54,7 +57,7 @@ class admin extends CI_Controller {
 
                     if (count($reto)==1) {
                         $cat = $reto[0];
-                        $this->load->view('Admin/navAdmin');
+                        $this->load->view('Admin/navAdmin',$user);
                         $this->load->view('Admin/modifAdm', $cat);
                     }
                 }
@@ -84,8 +87,8 @@ class admin extends CI_Controller {
     }
 
     public function deconnecter(){
-        $this->session->unset_userdata('connected');
-        redirect('Admin/index');
+        session_destroy();
+        redirect('admin/index');
     }
 //ACCUEIL FUNCTIONS
 
@@ -104,6 +107,7 @@ class admin extends CI_Controller {
         $id=array('categorie_idcategorie'=>$idcat);
         $this->load->model('Adm');
         $list['prods']=$this->Adm->ArticleCat($id);
+        $list['cat']=$idcat;
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/prodcat',$list);
     }
@@ -125,12 +129,12 @@ class admin extends CI_Controller {
 
     }
     public function AddArticle($idcat){
-        $nom=$this->input->post('nom');
-        $description=$this->input->post('desc');
-        $prix=$this->input->post('prix');
+        $nom=$this->input->post('nom',TRUE);
+        $description=$this->input->post('desc',TRUE);
+        $prix=$this->input->post('prix',TRUE);
 
-        $img=$this->input->post('image');
-        $etat=$this->input->post('etat');
+        $img=$this->input->post('image',TRUE);
+        $etat=$this->input->post('etat',TRUE);
         $config['upload_path']          = './Assets/img/product';
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size']             = 10055;
@@ -161,17 +165,18 @@ class admin extends CI_Controller {
             'imgArticle'=>$ty['file_name'],
             'etat'=>$etat
         );
+        $this->security->xss_clean($data);
         $this->load->model('Adm');
         $this->Adm->AddArticle($data);
         $this->prodcat($idcat);
     }}
 
     public function modifArticle($id,$idcat){
-        $nom=$this->input->post('nom');
-        $desc=$this->input->post('desc');
-        $prix=$this->input->post('prix');
-        $img=$this->input->post('img');
-        $etat=$this->input->post('etat');
+        $nom=$this->input->post('nom',TRUE);
+        $desc=$this->input->post('desc',TRUE);
+        $prix=$this->input->post('prix',TRUE);
+        $img=$this->input->post('img',TRUE);
+        $etat=$this->input->post('etat',TRUE);
         $config['upload_path']          = './Assets/img/product';
         $config['allowed_types']        = 'gif|jpg|png|jpeg';
         $config['max_size']             = 10055;
@@ -198,6 +203,7 @@ class admin extends CI_Controller {
             'imgArticle'=>$ty['file_name'],
             'etat'=>$etat
         );
+        $this->security->xss_clean($data);
         $ids=array('idArticles'=>$id);
         $this->load->model('Adm');
         $this->Adm->UpdateArticle($data,$ids);
@@ -241,12 +247,13 @@ class admin extends CI_Controller {
     }
 
     public function modifCat($id){
-        $nom=$this->input->post('titre');
-        $desc=$this->input->post('desc');
+        $nom=$this->input->post('titre',TRUE);
+        $desc=$this->input->post('desc',TRUE);
         $data=array(
             'nomCategorie'=>$nom,
             'descCategorie'=>$desc
         );
+        $this->security->xss_clean($data);
         $ids=array('idcategorie'=>$id);
         $this->load->model('Adm');
         $this->Adm->UpdateCategorie($ids,$data);
@@ -259,13 +266,13 @@ class admin extends CI_Controller {
         $this->categories();
     }
     public function AddCat(){
-        $nom=$this->input->post('titre');
-        $desc=$this->input->post('desc');
+        $nom=$this->input->post('titre',TRUE);
+        $desc=$this->input->post('desc',TRUE);
         $data=array(
             'nomCategorie'=>$nom,
             'descCategorie'=>$desc
         );
-
+        $this->security->xss_clean($data);
         $this->load->model('Adm');
         $this->Adm->AddCategorie($data);
         $this->categories();
@@ -297,10 +304,11 @@ class admin extends CI_Controller {
         $this->load->view('Admin/newMbr');
     }
     public function modifMembre($ids){
-        $nom=$this->input->post('nom');
-        $desc=$this->input->post('desc');
-        $mail=$this->input->post('mail');
-        $img=$this->input->post('img');
+        $nom=$this->input->post('nom',TRUE);
+        $desc=$this->input->post('desc',TRUE);
+        $mail=$this->input->post('mail',TRUE);
+        $img=$this->input->post('img',TRUE);
+        $phone=$this->input->post('phone',TRUE);
 
         $config['upload_path']          = './Assets/images/membres';
         $config['allowed_types']        = 'gif|jpg|png';
@@ -324,9 +332,10 @@ class admin extends CI_Controller {
                 'NomMembre'=>$nom,
                 'DescMembre'=>$desc,
                 'email'=>$mail,
-                'imgMembre'=>$ty['file_name']
+                'imgMembre'=>$ty['file_name'],
+                'phone'=>$phone
             );
-
+            $this->security->xss_clean($data);
             $id=array('idMembre'=>$ids);
             $this->load->model('Adm');
             $this->Adm->UpdateMembre($id,$data);
@@ -343,10 +352,11 @@ class admin extends CI_Controller {
         $this->Membres();
     }
     public function AddMembre(){
-        $nom=$this->input->post('nom');
-        $desc=$this->input->post('desc');
-        $mail=$this->input->post('mail');
-        $img=$this->input->post('img');
+        $nom=$this->input->post('nom',TRUE);
+        $desc=$this->input->post('desc',TRUE);
+        $mail=$this->input->post('mail',TRUE);
+        $img=$this->input->post('img',TRUE);
+        $phone=$this->input->post('phone',TRUE);
 
         $config['upload_path']          = './Assets/images/membres';
         $config['allowed_types']        = 'gif|jpg|png';
@@ -370,9 +380,10 @@ class admin extends CI_Controller {
                 'NomMembre'=>$nom,
                 'DescMembre'=>$desc,
                 'email'=>$mail,
-                'imgMembre'=>$ty['file_name']
+                'imgMembre'=>$ty['file_name'],
+                'phone'=>$phone
             );
-
+            $this->security->xss_clean($data);
             //echo 'reussite';
         $this->load->model('Adm');
         $this->Adm->AddMembre($data);
@@ -403,9 +414,9 @@ class admin extends CI_Controller {
 
     }
     public function AddPart(){
-        $nom=$this->input->post('nom');
-        $img=$this->input->post('img');
-        $web=$this->input->post('web');
+        $nom=$this->input->post('nom',TRUE);
+        $img=$this->input->post('img',TRUE);
+        $web=$this->input->post('web',TRUE);
 
         $config['upload_path']          = './Assets/images/part';
         $config['allowed_types']        = 'gif|jpg|png';
@@ -431,14 +442,15 @@ class admin extends CI_Controller {
             'imagePartenaires'=>$ty['file_name'],
             'WebPartenaires'=>$web
         );
+        $this->security->xss_clean($data);
         $this->load->model('Adm');
         $this->Adm->AddPartenaire($data);
         $this->Partenaires();
     }}
     public function ModifPart($id){
-        $nom=$this->input->post('nom');
-        $img=$this->input->post('img');
-        $web=$this->input->post('web');
+        $nom=$this->input->post('nom',TRUE);
+        $img=$this->input->post('img',TRUE);
+        $web=$this->input->post('web',TRUE);
 
         $config['upload_path']          = './Assets/images/part';
         $config['allowed_types']        = 'gif|jpg|png';
@@ -464,6 +476,7 @@ class admin extends CI_Controller {
             'imagePartenaires'=>$ty['file_name'],
             'WebPartenaires'=>$web
         );
+        $this->security->xss_clean($data);
         $ids=array('idPartenaires'=>$id);
         $this->load->model('Adm');
         $this->Adm->UpdatePartenaire($ids,$data);
@@ -504,24 +517,26 @@ class admin extends CI_Controller {
     }
 
     public function AddServ(){
-        $nom=$this->input->post('nom');
-        $logo=$this->input->post('logo');
-        $desc=$this->input->post('desc');
+        $nom=$this->input->post('nom',TRUE);
+        $logo=$this->input->post('logo',TRUE);
+        $desc=$this->input->post('desc',TRUE);
         $data=array('NomService'=>$nom,
                     'logoService'=>$logo,
                     'DescService'=>$desc);
+        $this->security->xss_clean($data);
         $this->load->model('Adm');
         $this->Adm->AddService($data);
         $this->service();
     }
 
     public function ModifServ($id){
-        $nom=$this->input->post('nom');
-        $logo=$this->input->post('logo');
-        $desc=$this->input->post('desc');
+        $nom=$this->input->post('nom',TRUE);
+        $logo=$this->input->post('logo',TRUE);
+        $desc=$this->input->post('desc',TRUE);
         $data=array('NomService'=>$nom,
             'logoService'=>$logo,
             'DescService'=>$desc);
+        $this->security->xss_clean($data);
         $ids=array('idService'=>$id);
         $this->load->model('Adm');
         $this->Adm->UpdateService($ids,$data);
@@ -567,14 +582,15 @@ class admin extends CI_Controller {
     }
 
     public function AddAdmin(){
-        $nom=$this->input->post('nom');
-        $mail=$this->input->post('mail');
-        $login=$this->input->post('login');
+        $nom=$this->input->post('nom',TRUE);
+        $mail=$this->input->post('mail',TRUE);
+        $login=$this->input->post('login',TRUE);
         $data=array('NomAdmin'=>$nom,
                     'EmailAdmin'=>$mail,
                     'login'=>$login,
-                    'Mdp'=>'imk2020D',
+                    'Mdp'=>hash('fnv1a64','imk2020D'),
                     'img'=>'default.png');
+        $this->security->xss_clean($data);
         $this->load->model('Adm');
         $this->Adm->AddAdmin($data);
         $this->Admins();
@@ -583,10 +599,10 @@ class admin extends CI_Controller {
         $this->load->view('Admin/exoupload');
     }
     public function ModifAdmin($id){
-        $mail=$this->input->post('mail');
-        $login=$this->input->post('login');
-        $mdp=$this->input->post('mdp');
-        $img=$this->input->post('userFile');
+        $mail=$this->input->post('mail',TRUE);
+        $login=$this->input->post('login',TRUE);
+        $mdp=$this->input->post('mdp',TRUE);
+        $img=$this->input->post('userFile',TRUE);
 
 
         $config['upload_path']          = './Assets/images/Admins';
@@ -594,7 +610,7 @@ class admin extends CI_Controller {
         $config['max_size']             = 10055;
         $config['max_width']            = 102455;
         $config['max_height']           = 76855;
-
+        $config['file_name']            =$this->session->nom;
         $this->load->library('upload', $config);
 
         if ( ! $this->upload->do_upload('userfile'))
@@ -612,12 +628,13 @@ class admin extends CI_Controller {
             $datas=array(
                 'EmailAdmin'=>$mail,
                 'Login'=>$login,
-                'Mdp'=>$mdp,
+                'Mdp'=>hash('fnv1a64',$mdp),
                 'img'=>$ty['file_name']);
+            $this->security->xss_clean($datas);
             $ids=array('idAdmin'=>$id);
             $this->load->model('Adm');
             $this->Adm->UpdateAdmin($ids,$datas);
-            $Auth=array('Login'=>$login,'Mdp'=>$mdp);
+            $Auth=array('Login'=>$login,'Mdp'=>hash('fnv1a64',$mdp));
             $this->load->model('Adm');
             $res = $this->Adm->authentification($Auth);
             if (count($res) > 0) {
@@ -633,11 +650,18 @@ class admin extends CI_Controller {
         $ret=$this->Adm->SingleAdmin($ids);
         if (count($ret)==1){
             $cat=$ret[0];
-            if($cat->Login!='imkdesign'){
-                    if($idac==1){
-                        $this->load->view('Admin');
+
+            if($cat->Login!='imkAdmin'){
+
+                    if($idac=='imkAdmin'){
+                        /*echo '<pre>';
+                        print_r($cat);
+                        echo '</pre>';*/
+
                         $this->Adm->DeleteAdmin($ids);
-                        $this->Admins();
+                        $liste['adm']=$this->Adm->AllAdmin();
+                        $this->load->view('Admin/navAdmin');
+                        $this->load->view('Admin/admins',$liste);
                     }
                     else{
                         $this->Admons();
@@ -673,12 +697,13 @@ class admin extends CI_Controller {
     }
 
     public function AddReponce($idadm){
-        $msg=$this->input->post('msg');
-        $question=$this->input->post('qst');
+        $msg=$this->input->post('msg',TRUE);
+        $question=$this->input->post('qst',TRUE);
 
         $data=array('Message'=>$msg,
                     'Admin_idAdmin'=>$idadm,
                     'Questions_idQuestions'=>$question);
+        $this->security->xss_clean($data);
         $this->load->model('Adm');
         $liste['rpc']=$this->Adm->AddReponce($data);
         $this->Reponce();

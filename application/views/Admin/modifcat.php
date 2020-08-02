@@ -19,6 +19,7 @@
              <input type="text" type="text" class="form-control" id="exampleInputText3" value="<?=$descCategorie?>" name="desc" required>
         </div>
     </div>
+    <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>"/>
 
     <input style="max-width: 50%;margin-left: 25%;" class="btn btn-outline-primary btn-lg btn-block" type="submit" value="valider">
-</form
+</form>

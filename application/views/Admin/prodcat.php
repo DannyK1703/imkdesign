@@ -30,4 +30,4 @@
 
     </tbody>
     </table>
-    <a style="max-width: 40%;margin-left: 30%;" class="btn btn-outline-info btn-lg btn-block" href="<?= site_url('Admin/newArticle/'.$art->categorie_idcategorie);?>"><i class="flaticon-add" ></i>Nouvel Article</a>
+    <a style="max-width: 40%;margin-left: 30%;" class="btn btn-outline-info btn-lg btn-block" href="<?= site_url('Admin/newArticle/'.$cat);?>"><i class="flaticon-add" ></i>Nouvel Article</a>
