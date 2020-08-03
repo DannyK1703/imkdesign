@@ -41,4 +41,5 @@
     </div>
 
     <input style="max-width: 50%;margin-left: 25%;" class="btn btn-outline-primary btn-lg btn-block" type="submit" value="valider">
-</form
+</form>
+<?php include('footer.php');?>

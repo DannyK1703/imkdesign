@@ -16,3 +16,4 @@ foreach ($qst as $mbr){
             <td>'.$mbr->Nom.'</td>
             <td>'.$mbr->Email.'</td>
             <td>'.$mbr->Message.'</td>';$i++;}?>
+<?php include('footer.php');?>

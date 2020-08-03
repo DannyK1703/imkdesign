@@ -30,6 +30,10 @@ class Adm extends CI_Model
         return false;
     }
 */
+    function achats(){
+
+        return $this->db->get($this->achats)->result();
+    }
     function authentification($data){
         //$this->db->escape($data);
         $this->db->where($data);
@@ -71,6 +75,14 @@ class Adm extends CI_Model
     function AllArticles(){
         return $this->db->get($this->articles)->result();
     }
+    function  QteArticles($idcat){
+        $this->db->select('idArticles');
+        $this->db->from($this->articles);
+        $this->db->where($idcat);
+        $result=$this->db->get()->result();
+        $res=count($result);
+        return $res;
+    }
     function SingleArticle($data){
         //$this->db->escape($data);
         $this->db->where($data);
@@ -78,6 +90,7 @@ class Adm extends CI_Model
         $res=$q->result();
         return $res;
     }
+
     function ArticleCat($idcat){
         $this->db->where($idcat);
         $q=$this->db->get($this->articles);

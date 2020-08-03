@@ -33,3 +33,4 @@
 <img style="margin-left:43%;max-width: 14%" src="<?=base_url('Assets/img/icons/l3.png')?>"/>
 <h4 style="text-align: center; ">Desolé Operation non Autorisé</h4>
 <a style="margin-left:48%;margin-top: 5%;max-width: 10%;" class="btn btn-outline-primary" href="<?=site_url('admin/Admins');?>">Retour</a>
+<?php include('footer.php');?>

@@ -54,6 +54,17 @@ class Welcome extends CI_Controller {
     }
 
     public function deconnecter(){
+	    $this->load->model('wel');
+        foreach ($this->session->pannier as $prods){
+            $data=array(
+            'idArticles'=>$prods[1],
+            'prix'=>$prods[0][0]->PrixArticle*$prods[3],
+            'cat'=>$prods[0][0]->categorie_idcategorie,
+            'qte'=>$prods[3],
+            'size'=>$prods[2],
+            'date'=>date('Y-m-d'));
+            $this->wel->newAchat($data);
+        }
         session_destroy();
         redirect('Welcome/index');
     }

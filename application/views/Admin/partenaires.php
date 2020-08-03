@@ -26,3 +26,4 @@
     </tbody>
 </table>
 <a style="max-width: 40%;margin-left: 30%;" class="btn btn-outline-info btn-lg btn-block" href="<?= site_url('admin/newPartenaire');?>"><i class="flaticon-add" ></i>Nouveau Partenaire</a>
+<?php include('footer.php');?>

@@ -5,18 +5,11 @@ class admin extends CI_Controller {
     //Admin Access to firt page
 
     public function index(){
+
         $this->load->view('Admin/index');
     }
 
-    public function indexo(){
-        $this->load->view('essaie');
-    }
-    public function addcart(){
-        $a=array('s'=>'yambo');
-        $this->cart->insert($a);
-        //var_dump($this->cart->contents());
-        $this->load->view('viu');
-    }
+
 
 //CONNECTIONS FUNCTIONS
     public function autentification(){
@@ -46,8 +39,8 @@ class admin extends CI_Controller {
                     $this->session->set_userdata($ret);
                     $this->load->model('Adm');
                     $liste['categ'] = $this->Adm->AllCategories();
-                    $this->load->view('Admin/navAdmin',$user);
-                    $this->load->view('Admin/accueil', $liste);
+
+                    $this->accueil();
                 }
                 else if($ret['connected'] && $user->Mdp==hash('fnv1a64',$pwd))
                 {
@@ -59,6 +52,7 @@ class admin extends CI_Controller {
                         $cat = $reto[0];
                         $this->load->view('Admin/navAdmin',$user);
                         $this->load->view('Admin/modifAdm', $cat);
+                        $this->accueil();
                     }
                 }
                 else{
@@ -94,14 +88,44 @@ class admin extends CI_Controller {
 
     public function accueil(){
         $this->load->model('Adm');
+
+        $a=$this->Adm->AllCategories();
+        $datas=array();
+        foreach ($a as $f){
+            $idcat=array('categorie_idcategorie'=>$f->idcategorie);
+            $a=$this->Adm->QteArticles($idcat);
+            $b=array('nom'=>$f->nomCategorie,'qte'=>$a);
+            array_push($datas,$b);
+        }
+        $liste['categories']=$datas;
+        $liste['Achat']=$this->Adm->achats();
         $liste['questions'] = $this->Adm->listQuestions();
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/accueil', $liste);
     }
 
+    public function achat_journalier(){
+        $this->load->model('Adm');
 
+        $data=array();
+            $a=$this->Adm->achats();
+            foreach ($a as $art){
+                $t = explode('-', $art->date);
+                $d=explode(' ',$t[2]);
+                if($t[1] == date('m') and $t[0]== date('Y')and $d[0]==date('d')){
+                    $b=$this->Adm->SingleArticle(array('idArticles'=>$art->idArticles));
 
-    //ARTICLE FUNCTIONS
+                    $c=array('idArt'=>$art->idArticles,'nomArt'=>$b[0]->NomArticle,'qte'=>$art->qte,'prix'=>$art->prix);
+                    array_push($data,$c);
+                }
+
+            }
+            $liste['Articles']=$data;
+
+        $this->load->view('Admin/navAdmin');
+        $this->load->view('Admin/achatjourn', $liste);
+
+    }
 
     public function prodcat($idcat){
         $id=array('categorie_idcategorie'=>$idcat);

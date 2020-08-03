@@ -63,7 +63,7 @@ class wel extends CI_Model
         return $this->db->get($this->produit)->result();
     }
     function SingleProduits($id){
-        $this->db->select('idArticles,NomArticle, DescArticle, PrixArticle,imgArticle,etat');
+        $this->db->select('idArticles,NomArticle,categorie_idcategorie, DescArticle, PrixArticle,imgArticle,etat');
         $this->db->from($this->produit);
         $this->db->where($id);
         return $this->db->get()->result();
@@ -101,10 +101,10 @@ class wel extends CI_Model
     function categories(){
         return $this->db->get($this->categorie)->result();
     }
-    function achats($pann){
+
+    function newAchat($data){
         $this->db->escape($data);
-        $this->db->where('idPannier',$pann);
-        return $this->db->get($this->pannel)->result();
+        $this->db->insert($this->achat,$data);
     }
 
     //Partenaires Model for User

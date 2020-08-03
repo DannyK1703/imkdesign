@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Divisima | eCommerce Template</title>
+	<title>IMKDesign | Market</title>
 	<meta charset="UTF-8">
-	<meta name="description" content=" Divisima | eCommerce Template">
-	<meta name="keywords" content="divisima, eCommerce, creative, html">
+	<meta name="description" content=" IMKDesign | Market">
+	<meta name="keywords" content="IMKDesign | Market">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Favicon -->
 	<link href="img/favicon.ico" rel="shortcut icon"/>
@@ -121,7 +121,7 @@
         </style>
 		<nav class="main-navbar">
 			<div class="container">
-				 menu 
+				 menu
 				<ul class="main-menu">
 							<li><a href="<?=site_url('welcome/index');?>">Accueil</a></li>
 							<li><a href="<?=site_url('welcome/categories');?>">Faire du Shopping</a></li>

@@ -31,3 +31,4 @@
     </tbody>
     </table>
     <a style="max-width: 40%;margin-left: 30%;" class="btn btn-outline-info btn-lg btn-block" href="<?= site_url('Admin/newArticle/'.$cat);?>"><i class="flaticon-add" ></i>Nouvel Article</a>
+<?php include('footer.php');?>

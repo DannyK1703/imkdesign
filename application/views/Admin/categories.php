@@ -27,3 +27,4 @@
     </tbody>
 </table>
 <a style="max-width: 40%;margin-left: 30%;" class="btn btn-outline-info btn-lg btn-block" href="<?= site_url('admin/newCategorie');?>"><i class="flaticon-add" ></i>Nouvelle Categorie</a>
+<?php include('footer.php');?>

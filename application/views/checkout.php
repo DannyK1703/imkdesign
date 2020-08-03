@@ -63,9 +63,9 @@
 					<form class="checkout-form">
 						<div class="cf-title">Payer Avec :</div>
 						<ul class="payment-list">
-							<li>Paypal<a href="#"><img src="img/paypal.png" alt=""></a></li>
-							<li>Credit / Debit card<a href="#"><img src="img/mastercart.png" alt=""></a></li>
-                            <li>MPesa<a href="#"><img src="img/paypal.png" alt=""></a></li>
+							<li><a href="<?= site_url('Welcome/deconnecter')?>"><img src="img/paypal.png" alt="">Paypal</a></li>
+							<li><a href="<?= site_url('Welcome/deconnecter')?>"><img src="img/mastercart.png" alt="">Credit / Debit card</a></li>
+                            <li><a href="<?= site_url('Welcome/deconnecter')?>"><img src="img/paypal.png" alt="">MPesa</a></li>
 							<li>Pay when you get the package</li>
 						</ul>
 
