@@ -36,51 +36,8 @@
 	<!-- Page Preloder -->
 
 	<!-- Header section -->
-	<header class="header-section">
-		<div class="header-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-1 text-center text-lg-left">
-						<!-- logo -->
-						<a href="<?=site_url('welcome/index');?>"class="site-logo">
+	<header class="header-section fixed-top" >
 
-							<img src="<?= base_url('Assets/img/icons/logo.png');?>" alt="" >
-
-						</a>
-
-					</div>
-                    <i class="flaticon-shopping-cart" id="cor"></i>
-
-					<div class="col-xl-6 col-lg-5">
-						<form class="header-search-form">
-							<input type="text" placeholder="Search on divisima ....">
-							<button><i class="flaticon-search"></i></button>
-						</form>
-					</div>
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="user-panel">
-                    <?php
-
-                        if (!isset($_SESSION['pannier'])){
-                            $a = 0;
-                        }
-                        else $a=count($_SESSION['pannier']);
-
-
-                            echo '<div class="up-item">
-                                <div class="shopping-card">
-                                    <i class="flaticon-bag"></i>
-
-                                    <span>'.$a.'</span>
-                                </div>
-                                <a href="'.site_url('welcome/pannier').'">Shopping Cart</a>
-                            </div>';?>
-                        </div>
-                    </div>
-
-				</div>
-			</div>
-		</div>
         <style>
             [class^="flaticon-sh"]:before, [class*=" flaticon-sh"]:before, [class^="flaticon-sh"]:after, [class*=" flaticon-sh"]:after {
                 font-family: Flaticon;
@@ -89,6 +46,14 @@
                 margin-left: 0px;
                 color: #333;
             }
+            [class^="flaticon-bag"]:before, [class*="flaticon-bag"]:before, [class^="flaticon-bag"]:after, [class*="flaticon-bag"]:after {
+                font-family: Flaticon;
+                font-size: 25px;
+                font-style: normal;
+                margin-left: 0px;
+                color: #333;
+            }
+
             [id^="cor"]:before,[id*="cor"]:before,[id^="cor"]:after,[id*="cor"]:after{
                 font-family: Flaticon;
                 font-size: 30px;
@@ -119,7 +84,7 @@
             }
 
         </style>
-		<nav class="main-navbar">
+		<nav class="main-navbar " >
 			<div class="container">
 				 menu
 				<ul class="main-menu">
@@ -129,8 +94,23 @@
 							<li><a href="<?=site_url('welcome/contacts');?>">Nos Contact </a></li>
 
                             <li><a href="<?=site_url('welcome/about');?>">Apropos de Nous</a></li>
+                    <?php
 
-					        <li><a href="#">Blog</a></li>
+                        if (!isset($_SESSION['pannier'])){
+                            $a = 0;
+                        }
+                        else $a=count($_SESSION['pannier']);
+
+
+                        echo '<li >
+                                <a class="shop" href="'.site_url('welcome/pannier'). '" style="background-color: #f4f0fb;width: 90%;text-align: center"><div class="shopping-card" >
+                                    <i class="flaticon-bag"  style="color: white"></i>
+
+                                    <span>' .$a.'</span>
+                                </div>
+                                </a>
+                            </li>';?>
+					        <li><a href="<?=site_url('welcome/deconnecter')?>">Blog</a></li>
                     <?php if($this->session->is_connected){
                         echo '<button class="btn btn-outline-light my-2 my-sm-0" type="submit" data-toggle="modal" data-target="#exampleModal">
                 '.$this->session->pseudo.'</a></button>';
@@ -184,4 +164,5 @@
             </div>
         </div>
 	</header>
+    <section style="margin-top: 100px">
 	<!-- Header section end -->

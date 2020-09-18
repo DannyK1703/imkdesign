@@ -1,6 +1,6 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Rapport Mensuel des Achats par Qantité</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Rapport Annuel des Articles Achetés (par Qantités)</h6>
     </div>
     <div class="card-body">
         <div class="row">
@@ -9,12 +9,12 @@
             <div class="col-lg-6 mb-4">
                 <?php
                     $max=0;
-
                     foreach ($Articles as $cat){
                         if( $cat['qte']>$max){
                             $max=$cat['qte'];
                         }
                     }
+
 
                     foreach ($Articles as $categ){
 
@@ -27,7 +27,7 @@
                         else if( $categ['qte']>=($max*80)/100){
                             $color='bg-info';
                             $pro=( $categ['qte']*100)/$max;
-
+                            
                         }
                         else if( $categ['qte']>=($max*60)/100){
                             $color='';
@@ -52,3 +52,4 @@
                     }
                     include('footer.php'); ?>
                 <a
+

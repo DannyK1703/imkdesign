@@ -49,8 +49,9 @@
                             foreach ($taille as $t){
 
                                 echo '<div class="sc-item">
-                                <input type="radio" name="size" id="'.$t->desc.'-size" value="'.$t->desc.'" required>
+                                <input type="radio" id="'.$t->desc.'-size" name="size"  value="'.$t->desc.'" >
                                 <label for="'.$t->desc.'-size">'.$t->num.'</label>
+                                
                             </div>';
                             }
 

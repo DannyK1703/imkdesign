@@ -126,6 +126,50 @@ class admin extends CI_Controller {
         $this->load->view('Admin/achatjourn', $liste);
 
     }
+        public function achat_mensuel(){
+            $this->load->model('Adm');
+
+            $data=array();
+            $a=$this->Adm->achats();
+            foreach ($a as $art){
+                $t = explode('-', $art->date);
+
+                if($t[1] == date('m') ){
+                    $b=$this->Adm->SingleArticle(array('idArticles'=>$art->idArticles));
+
+                    $c=array('idArt'=>$art->idArticles,'nomArt'=>$b[0]->NomArticle,'qte'=>$art->qte,'prix'=>$art->prix);
+                    array_push($data,$c);
+                }
+
+            }
+            $liste['Articles']=$data;
+
+            $this->load->view('Admin/navAdmin');
+            $this->load->view('Admin/achatmens', $liste);
+
+        }
+        public function achat_annuel()
+        {
+            $this->load->model('Adm');
+
+            $data=array();
+            $a=$this->Adm->achats();
+            foreach ($a as $art){
+                $t = explode('-', $art->date);
+
+                if($t[0] == date('Y') ){
+                    $b=$this->Adm->SingleArticle(array('idArticles'=>$art->idArticles));
+
+                    $c=array('idArt'=>$art->idArticles,'nomArt'=>$b[0]->NomArticle,'qte'=>$art->qte,'prix'=>$art->prix);
+                    array_push($data,$c);
+                }
+
+            }
+            $liste['Articles']=$data;
+
+            $this->load->view('Admin/navAdmin');
+            $this->load->view('Admin/achatannuel', $liste);
+        }
 
     public function prodcat($idcat){
         $id=array('categorie_idcategorie'=>$idcat);

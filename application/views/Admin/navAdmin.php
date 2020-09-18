@@ -39,8 +39,8 @@
     <!-- Page Preloder -->
 
     <!-- Header section -->
-    <header class="header-section">
-        <nav class="main-navbar" style="background-color: rgba(36,36,12,0.96);">
+    <header class="header-section ">
+        <nav class="main-navbar fixed-top" style="background-color: rgba(36,36,12,0.96);">
             <div class="container">
 
                 <ul class="main-menu">
@@ -115,7 +115,7 @@
         </div>
 
     </header>
-
+<section style="margin-top: 70px">
 
 
 

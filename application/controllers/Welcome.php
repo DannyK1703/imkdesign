@@ -10,6 +10,9 @@ class Welcome extends CI_Controller {
         $prods['produits']=$this->wel->AllProduits();
         $prods['partu']=$this->wel->AllPartenaires();
 
+       $prods['taille']=$this->wel->getTailles();
+
+
         if (!isset($_SESSION['pannier'])){
            $_SESSION['pannier'] = [];
         }
@@ -54,7 +57,7 @@ class Welcome extends CI_Controller {
     }
 
     public function deconnecter(){
-	    $this->load->model('wel');
+	    /*$this->load->model('wel');
         foreach ($this->session->pannier as $prods){
             $data=array(
             'idArticles'=>$prods[1],
@@ -64,7 +67,7 @@ class Welcome extends CI_Controller {
             'size'=>$prods[2],
             'date'=>date('Y-m-d'));
             $this->wel->newAchat($data);
-        }
+        }*/
         session_destroy();
         redirect('Welcome/index');
     }

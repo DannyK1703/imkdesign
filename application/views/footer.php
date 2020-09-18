@@ -93,7 +93,7 @@
 	<!-- Footer section end -->
 
     </div>
-
+</section>
 	<!--====== Javascripts & Jquery ======-->
 	<script src="<?=base_url('Assets/js/jquery-3.2.1.min.js');?>"></script>
 	<script src="<?=base_url('Assets/js/bootstrap.min.js');?>"></script>
