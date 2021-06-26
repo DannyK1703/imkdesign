@@ -86,8 +86,9 @@
         </style>
 		<nav class="main-navbar " >
 			<div class="container">
-				 menu
+				
 				<ul class="main-menu">
+                            <li style="width:7%" id="logo"><a href="<?=site_url('welcome/index');?>" ><img src="<?=base_url('Assets/img/icons/ico1.png');?>" /></a>
 							<li><a href="<?=site_url('welcome/index');?>">Accueil</a></li>
 							<li><a href="<?=site_url('welcome/categories');?>">Faire du Shopping</a></li>
                             <li><a href="<?=site_url('welcome/services');?>">Services </a></li>
@@ -102,9 +103,9 @@
                         else $a=count($_SESSION['pannier']);
 
 
-                        echo '<li >
-                                <a class="shop" href="'.site_url('welcome/pannier'). '" style="background-color: #f4f0fb;width: 90%;text-align: center"><div class="shopping-card" >
-                                    <i class="flaticon-bag"  style="color: white"></i>
+                        echo '<li style="min-width:7%">
+                                <a class="shop" href="'.site_url('welcome/pannier'). '" style="background-color: #08bdca59;width: 100%;text-align: center"><div class="shopping-card" >
+                                    <i class="flaticon-bag"  style="color: white;"></i>
 
                                     <span>' .$a.'</span>
                                 </div>
@@ -124,45 +125,7 @@
         </nav>
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><?php echo $this->session->pseudo?></h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <table class="table">
-
-                            <tbody>
-                            <tr>
-                                <th scope="row">Nom :</th>
-                                <td><?php echo $this->session->nom?></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Phone :</th>
-                                <td><?php echo $this->session->phone?></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Email :</th>
-                                <td><?php echo $this->session->email?></td>
-                            </tr></tbody></table>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-outline-danger my-2 my-sm-0" >
-                            <a style="color: #0000FF" href="<?php echo site_url('welcome/deconnecter');?>">Se Deconnecter</a>
-                        </button>
-                        <button class="btn btn-outline-success my-2 my-sm-0" >
-                            <a style="color: #1b1e21" href="<?php echo site_url('welcome/ModifProfil/'.$this->session->id);?>">Modifier Mes informations</a>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    
 	</header>
-    <section style="margin-top: 100px">
+    
 	<!-- Header section end -->

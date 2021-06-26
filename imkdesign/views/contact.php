@@ -1,7 +1,7 @@
 
 
 	<!-- Page info -->
-	<div class="page-top-info">
+	<div class="page-top-info" style="margin-top: 100px">
 		<div class="container">
 			<h4>Contact</h4>
 			<div class="site-pagination">
@@ -14,14 +14,15 @@
 
 
 	<!-- Contact section -->
-	<section class="contact-section">
+	<section class="contact-section" style="margin-bottom: 3%">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6 contact-info">
-					<h3>Get in touch</h3>
+					<h3>Nous Ecrire</h3>
 					<p>Main Str, no 23, New York</p>
 					<p>+546 990221 123</p>
-					<p>hosting@contact.com</p>
+					<p>Nous somme disponible de 8h00 a 22h00</p>
+					<p>info@imkdesign.com</p>
 					<div class="contact-social">
 						<a href="#"><i class="fa fa-pinterest"></i></a>
 						<a href="#"><i class="fa fa-facebook"></i></a>

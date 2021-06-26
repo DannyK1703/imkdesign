@@ -1,68 +1,14 @@
 	
 
-<div class="container-fluid">
+<div >
 	<!-- Footer section -->
-	<section class="footer-section">
-		<div class="container">
+	<section class="footer-section" style="background-image: url('<?=base_url('Assets/img/bg-2.jpg');?>');">
+		<div style="background: #020000bd;height:100%">
+		<div class="container" style="padding-top: 60px;">
 			<div class="footer-logo text-center">
 				<a href="<?=site_url('welcome/home');?>"><img src="<?=base_url('Assets/img/icons/logo12.png');?>" alt=""style="height: 80px"></a>
 			</div>
-			<div class="row">
-				<div class="col-lg-4 col-sm-6">
-					<div class="footer-widget about-widget">
-						<h2>About</h2>
-						<p>Donec vitae purus nunc. Morbi faucibus erat sit amet congue mattis. Nullam frin-gilla faucibus urna, id dapibus erat iaculis ut. Integer ac sem.</p>
-						<img src="<?=site_url('Assets/img/cards.png');?>" alt="">
-					</div>
-				</div>
-
-
-				<div class="col-lg-4 col-sm-6">
-					<div class="footer-widget about-widget">
-						<h2>Questions</h2>
-						<div class="fw-latest-post-widget">
-							<div class="lp-item">
-								<div class="lp-thumb set-bg" data-setbg="<?=base_url('Assets/img/blog-thumbs/1.jpg');?>"></div>
-								<div class="lp-content">
-									<h6>what shoes to wear</h6>
-									<span>Oct 21, 2018</span>
-									<a href="#" class="readmore">Read More</a>
-								</div>
-							</div>
-							<div class="lp-item">
-								<div class="lp-thumb set-bg" data-setbg="<?=base_url('Assets/img/blog-thumbs/2.jpg');?>"></div>
-								<div class="lp-content">
-									<h6>trends this year</h6>
-									<span>Oct 21, 2018</span>
-									<a href="#" class="readmore">Read More</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-lg-4 col-sm-6">
-					<div class="footer-widget contact-widget">
-						<h2>Contact</h2>
-						<div class="con-info">
-							<span>C.</span>
-							<p>Your Company Ltd </p>
-						</div>
-						<div class="con-info">
-							<span>B.</span>
-							<p>1481 Creekside Lane  Avila Beach, CA 93424, P.O. BOX 68 </p>
-						</div>
-						<div class="con-info">
-							<span>T.</span>
-							<p>+53 345 7953 32453</p>
-						</div>
-						<div class="con-info">
-							<span>E.</span>
-							<p>office@imkdesign.com</p>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 		<div class="social-links-warp">
 			<div class="container">
@@ -85,6 +31,7 @@
 
 
 
+		</div>
 		</div>
 
 

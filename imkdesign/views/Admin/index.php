@@ -58,7 +58,14 @@
       </div>
       <input type="hidden" name="<?=$this->security->get_csrf_token_name();?>" value="<?=$this->security->get_csrf_hash();?>"/>
 
+    <?php
 
+        if(isset($this->session)){
+            echo $this->session->error_login;
+        }else{
+
+        }
+    ?>
   </div>
   <div class="card-footer text-muted bg-dark" >
   	<button type="submit" class="btn btn-outline-info btn-lg btn-block" style="max-width:70%; margin-left:15%"><i style="font-size: 30px" class="flaticon-correct"></i>Submit</button>

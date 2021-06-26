@@ -3,9 +3,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class admin extends CI_Controller {
     //Admin Access to firt page
-
+    public function VerifSession(){
+		
+		if($this->session->connected==true){
+			return true;
+		
+		}
+		else{
+			redirect("Admin/index");
+		}
+	}
     public function index(){
-
+        $health_d=array(
+            'error_login'=> ''
+        );
+        $this->session->set_flashdata($health_d);
         $this->load->view('Admin/index');
     }
 
@@ -64,7 +76,8 @@ class admin extends CI_Controller {
                     //echo '2';
                 }
 
-            }else{
+            }
+            else{
                 $health_d=array(
                     'error_login'=> 'login ou mot de passe incorrect'
                 );
@@ -87,6 +100,7 @@ class admin extends CI_Controller {
 //ACCUEIL FUNCTIONS
 
     public function accueil(){
+        
         $this->load->model('Adm');
 
         $a=$this->Adm->AllCategories();
@@ -105,6 +119,7 @@ class admin extends CI_Controller {
     }
 
     public function achat_journalier(){
+        $this->VerifSession();
         $this->load->model('Adm');
 
         $data=array();
@@ -127,6 +142,7 @@ class admin extends CI_Controller {
 
     }
         public function achat_mensuel(){
+            $this->VerifSession();
             $this->load->model('Adm');
 
             $data=array();
@@ -150,6 +166,7 @@ class admin extends CI_Controller {
         }
         public function achat_annuel()
         {
+            $this->VerifSession();
             $this->load->model('Adm');
 
             $data=array();
@@ -172,6 +189,7 @@ class admin extends CI_Controller {
         }
 
     public function prodcat($idcat){
+        $this->VerifSession();
         $id=array('categorie_idcategorie'=>$idcat);
         $this->load->model('Adm');
         $list['prods']=$this->Adm->ArticleCat($id);
@@ -180,12 +198,14 @@ class admin extends CI_Controller {
         $this->load->view('Admin/prodcat',$list);
     }
     public function newArticle($id){
+        $this->VerifSession();
         $list['idcat']=$id;
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/newArticle',$list);
     }
 
     public function modifierArt($id){
+        $this->VerifSession();
         $ids=array('idArticles'=>$id);
         $this->load->model('Adm');
         $ret=$this->Adm->SingleArticle($ids);
@@ -197,6 +217,7 @@ class admin extends CI_Controller {
 
     }
     public function AddArticle($idcat){
+        $this->VerifSession();
         $nom=$this->input->post('nom',TRUE);
         $description=$this->input->post('desc',TRUE);
         $prix=$this->input->post('prix',TRUE);
@@ -240,6 +261,7 @@ class admin extends CI_Controller {
     }}
 
     public function modifArticle($id,$idcat){
+        $this->VerifSession();
         $nom=$this->input->post('nom',TRUE);
         $desc=$this->input->post('desc',TRUE);
         $prix=$this->input->post('prix',TRUE);
@@ -279,6 +301,7 @@ class admin extends CI_Controller {
     }}
 
     public function suppArticle($id){
+        $this->VerifSession();
         $ids=array('idArticles'=>$id);
         $this->load->model('Adm');
         $ret=$this->Adm->SingleArticle($ids);
@@ -291,6 +314,7 @@ class admin extends CI_Controller {
 
 //CATEGORIE FUNCTION
     public function categories(){
+        $this->VerifSession();
         $this->load->model('Adm');
         $categ['categ']=$this->Adm->AllCategories();
         $this->load->view('Admin/navAdmin');
@@ -298,11 +322,13 @@ class admin extends CI_Controller {
 
     }
     public function newCategorie(){
+        $this->VerifSession();
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/newCat');
     }
 
     public function modifierCat($id){
+        $this->VerifSession();
         $ids=array('idcategorie'=>$id);
         $this->load->model('Adm');
         $ret=$this->Adm->SingleCategorie($ids);
@@ -315,6 +341,7 @@ class admin extends CI_Controller {
     }
 
     public function modifCat($id){
+        $this->VerifSession();
         $nom=$this->input->post('titre',TRUE);
         $desc=$this->input->post('desc',TRUE);
         $data=array(
@@ -328,12 +355,14 @@ class admin extends CI_Controller {
         $this->categories();
     }
     public function suppCat($id){
+        $this->VerifSession();
         $ids=array('idcategorie'=>$id);
         $this->load->model('Adm');
         $this->Adm->DeleteCategorie($ids);
         $this->categories();
     }
     public function AddCat(){
+        $this->VerifSession();
         $nom=$this->input->post('titre',TRUE);
         $desc=$this->input->post('desc',TRUE);
         $data=array(
@@ -349,6 +378,7 @@ class admin extends CI_Controller {
     //MEMBRES FUNCTIONS
 
     public function Membres(){
+        $this->VerifSession();
         $this->load->model('Adm');
         $liste['mbres']=$this->Adm->AllMembres();
         $this->load->view('Admin/navAdmin');
@@ -356,6 +386,7 @@ class admin extends CI_Controller {
     }
 
     public function modifierMembre($id){
+        $this->VerifSession();
         $ids=array('idMembre'=>$id);
         $this->load->model('Adm');
         $ret=$this->Adm->SingleMembre($ids);
@@ -368,10 +399,12 @@ class admin extends CI_Controller {
     }
 
     public function newMembre(){
+        $this->VerifSession();
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/newMbr');
     }
     public function modifMembre($ids){
+        $this->VerifSession();
         $nom=$this->input->post('nom',TRUE);
         $desc=$this->input->post('desc',TRUE);
         $mail=$this->input->post('mail',TRUE);
@@ -414,12 +447,14 @@ class admin extends CI_Controller {
 
     }
     public function suppMembre($id){
+        $this->VerifSession();
         $ids=array('idMembre'=>$id);
         $this->load->model('Adm');
         $this->Adm->DeleteMembres($ids);
         $this->Membres();
     }
     public function AddMembre(){
+        $this->VerifSession();
         $nom=$this->input->post('nom',TRUE);
         $desc=$this->input->post('desc',TRUE);
         $mail=$this->input->post('mail',TRUE);
@@ -461,12 +496,14 @@ class admin extends CI_Controller {
 
     //PARTAINERS FUNCTIONS
     public function Partenaires(){
+        $this->VerifSession();
         $this->load->model('Adm');
         $list['part']=$this->Adm->AllPartenaire();
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/partenaires',$list);
     }
     public function newPartenaire(){
+        $this->VerifSession();
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/newPart');
     }
@@ -482,6 +519,7 @@ class admin extends CI_Controller {
 
     }
     public function AddPart(){
+        $this->VerifSession();
         $nom=$this->input->post('nom',TRUE);
         $img=$this->input->post('img',TRUE);
         $web=$this->input->post('web',TRUE);
@@ -516,6 +554,7 @@ class admin extends CI_Controller {
         $this->Partenaires();
     }}
     public function ModifPart($id){
+        $this->VerifSession();
         $nom=$this->input->post('nom',TRUE);
         $img=$this->input->post('img',TRUE);
         $web=$this->input->post('web',TRUE);
@@ -561,6 +600,7 @@ class admin extends CI_Controller {
     //SERVICE FUNCTIONS
 
     public function service(){
+        $this->VerifSession();
         $this->load->model('Adm');
         $list['serv']=$this->Adm->AllServices();
         $this->load->view('Admin/navAdmin');
@@ -568,6 +608,7 @@ class admin extends CI_Controller {
     }
 
     public function modifierServ($id){
+        $this->VerifSession();
         $ids=array('idService'=>$id);
         $this->load->model('Adm');
         $ret=$this->Adm->SingleService($ids);
@@ -580,11 +621,13 @@ class admin extends CI_Controller {
     }
 
     public function newService(){
+        $this->VerifSession();
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/newServ');
     }
 
     public function AddServ(){
+        $this->VerifSession();
         $nom=$this->input->post('nom',TRUE);
         $logo=$this->input->post('logo',TRUE);
         $desc=$this->input->post('desc',TRUE);
@@ -598,6 +641,7 @@ class admin extends CI_Controller {
     }
 
     public function ModifServ($id){
+        $this->VerifSession();
         $nom=$this->input->post('nom',TRUE);
         $logo=$this->input->post('logo',TRUE);
         $desc=$this->input->post('desc',TRUE);
@@ -611,6 +655,7 @@ class admin extends CI_Controller {
         $this->service();
     }
     public function suppServ($id){
+        $this->VerifSession();
         $ids=array('idService'=>$id);
         $this->load->model('Adm');
         $this->Adm->DeleteService($ids);
@@ -619,6 +664,7 @@ class admin extends CI_Controller {
 
     //ADMINS FUNCTIONS
     public function Admins(){
+        $this->VerifSession();
         $this->load->model('Adm');
         $liste['adm']=$this->Adm->AllAdmin();
         $this->load->view('Admin/navAdmin');
@@ -633,6 +679,7 @@ class admin extends CI_Controller {
 
 
     public function modifierAdmin($id){
+        $this->VerifSession();
         $ids=array('idAdmin'=>$id);
         $this->load->model('Adm');
         $ret=$this->Adm->SingleAdmin($ids);
@@ -645,11 +692,13 @@ class admin extends CI_Controller {
     }
 
     public function newAdmin(){
+        $this->VerifSession();
         $this->load->view('Admin/navAdmin');
         $this->load->view('Admin/newAdmin');
     }
 
     public function AddAdmin(){
+        $this->VerifSession();
         $nom=$this->input->post('nom',TRUE);
         $mail=$this->input->post('mail',TRUE);
         $login=$this->input->post('login',TRUE);
@@ -667,6 +716,7 @@ class admin extends CI_Controller {
         $this->load->view('Admin/exoupload');
     }
     public function ModifAdmin($id){
+        $this->VerifSession();
         $mail=$this->input->post('mail',TRUE);
         $login=$this->input->post('login',TRUE);
         $mdp=$this->input->post('mdp',TRUE);
@@ -713,6 +763,7 @@ class admin extends CI_Controller {
 
     }}
     public function SuppAdmin($id,$idac){
+        $this->VerifSession();
         $ids=array('idAdmin'=>$id);
         $this->load->model('Adm');
         $ret=$this->Adm->SingleAdmin($ids);
@@ -746,6 +797,7 @@ class admin extends CI_Controller {
 //MSG FUNCTIONS
 
     public function msg(){
+        $this->VerifSession();
         $this->load->model('Adm');
         $liste['qst']=$this->Adm->listQuestions();
         $this->load->view('Admin/navAdmin');
@@ -754,17 +806,20 @@ class admin extends CI_Controller {
 
     //REPONCES FONCTIONS
     public function Reponce(){
+        $this->VerifSession();
         $this->load->model('Adm');
         $liste['rpc']=$this->Adm->AllReponces();
         $this->load->view('Admin/navAdmin');
-        $this->load->view('Admin/reponces',liste);
+        $this->load->view('Admin/reponces',$liste);
     }
 
     public function newReponce(){
+        $this->VerifSession();
         $this->load->veiw('newRep');
     }
 
     public function AddReponce($idadm){
+        $this->VerifSession();
         $msg=$this->input->post('msg',TRUE);
         $question=$this->input->post('qst',TRUE);
 
@@ -777,12 +832,14 @@ class admin extends CI_Controller {
         $this->Reponce();
     }
     public function suppReponce($id){
+        $this->VerifSession();
         $ids=array('idReponce'=>$id);
         $this->load->model('Adm');
         $liste['rpc']=$this->Adm->DeleteReponce($ids);
         $this->Reponce();
     }
     public function ModifRep($id,$idadm){
+        $this->VerifSession();
         $msg=$this->input->post('msg');
         $data=array('Message'=>$msg,
             'Admin_idAdmin'=>$idadm
@@ -792,6 +849,10 @@ class admin extends CI_Controller {
         $liste['rpc']=$this->Adm->UpdateReponce($ids,$data);
         $this->Reponce();
     }
+    public function myn(){
 
+        $a=hash('fnv1a64','imk2021D');
+        echo $a;
+    }
 
 }

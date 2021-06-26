@@ -1,6 +1,6 @@
 
 	<!-- Page info -->
-	<div class="page-top-info">
+	<div class="page-top-info" style="margin-top: 100px">
 		<div class="container">
 			<h4>Your cart</h4>
 			<div class="site-pagination">

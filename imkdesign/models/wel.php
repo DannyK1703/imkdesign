@@ -29,6 +29,12 @@ class wel extends CI_Model
         $this->db->where($ids);
         $this->db->update($this->client);
     }
+
+
+
+
+
+    
     //panier model for user
     public function getArticleClient($ids)
     {

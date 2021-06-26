@@ -1,7 +1,7 @@
 
 
 	<!-- Page info -->
-	<div class="page-top-info">
+	<div class="page-top-info"style="margin-top: 100px">
 		<div class="container">
 			<h4>Notre Magasin</h4>
 			<div class="site-pagination">
